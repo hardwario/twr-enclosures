@@ -14,12 +14,15 @@ The following table lists the available models:
 |--------|--------|:------------:|--------|----------------------|
 | BCE102 | Narrow | 4            | Yes    | Mini Cover Module<br>Core Module<br>Sigfox Module<br>Mini Battery Module |
 | BCE104 | Narrow | 5            | Yes    | Mini Cover Module<br>Core Module<br>Sensor Module<br>Sigfox Module<br>Mini Battery Module |
+| BCE201 | Wide   | 4            | No     | Cover Module<br>Core Module<br>CO2 Module<br>Battery Module |
+| BCE301 | Wide   | 3            | No     | Cover Module<br>Core Module<br>Power Module |
+| BCE302 | Wide   | 4            | No     | Cover Module<br>Core Module<br>Encoder Module<br>Power Module |
 
 > Note: Suffix `A` denotes the base part.
 
 # License
 
-This project is licensed under the [Attribution-NonCommercial-NoDerivatives 4.0 International](https://creativecommons.org/licenses/by-nc-nd/4.0/) - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the [Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/) - see the [LICENSE](LICENSE) file for details.
 
 ---
 
