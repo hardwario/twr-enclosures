@@ -17,7 +17,7 @@ The following table lists the available models:
 | BCE104 | Narrow | 5            | Yes    | Mini Cover Module<br>Core Module<br>Sensor Module<br>Sigfox Module<br>Mini Battery Module |
 | BCE201 | Wide   | 4            | No     | Cover Module<br>Core Module<br>CO2 Module<br>Battery Module |
 | BCE301 | Wide   | 3            | No     | Cover Module<br>Core Module<br>Power Module |
-| BCE302 | Wide   | 4            | No     | Cover Module<br>Core Module<br>Encoder Module<br>Power Module |
+| BCE302 | Wide   | 4            | No     | LCD Module<br>Core Module<br>Encoder Module<br>Power Module |
 
 > Note: Suffix `A` denotes the base part.
 
