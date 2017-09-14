@@ -12,6 +12,7 @@ The following table lists the available models:
 
 | Model  | Type   | Module Count | Sigfox | Module Configuration |
 |--------|--------|:------------:|--------|----------------------|
+| BCE101 | Narrow | 3            | No     | Mini Cover Module<br>Core Module<br>Mini Battery Module |
 | BCE102 | Narrow | 4            | Yes    | Mini Cover Module<br>Core Module<br>Sigfox Module<br>Mini Battery Module |
 | BCE104 | Narrow | 5            | Yes    | Mini Cover Module<br>Core Module<br>Sensor Module<br>Sigfox Module<br>Mini Battery Module |
 | BCE201 | Wide   | 4            | No     | Cover Module<br>Core Module<br>CO2 Module<br>Battery Module |
