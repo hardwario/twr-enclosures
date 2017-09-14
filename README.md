@@ -8,12 +8,12 @@ This repository contains STL models of BigClown enclosures. These model have bee
 
 The model marking consists of the following format `BCExyy` and optional suffix `A`, `B`, etc. in case of multi-part models. The number `x` represents the basic structure and the number `yy` represents its variant.
 
-The following table is a brief overview of the available models:
+The following table lists the available models:
 
 | Model  | Type   | Module Count | Sigfox | Module Configuration |
 |--------|--------|:------------:|--------|----------------------|
-| BCE102 | Narrow | 4            | Yes    | Mini Battery Module<br>Sigfox Module<br>Core Module<br>Mini Cover Module |
-| BCE104 | Narrow | 5            | Yes    | Mini Battery Module<br>Sigfox Module<br>Sensor Module<br>Core Module<br>Mini Cover Module |
+| BCE102 | Narrow | 4            | Yes    | Mini Cover Module<br>Core Module<br>Sigfox Module<br>Mini Battery Module |
+| BCE104 | Narrow | 5            | Yes    | Mini Cover Module<br>Core Module<br>Sensor Module<br>Sigfox Module<br>Mini Battery Module |
 
 > Note: Suffix `A` denotes the base part.
 
