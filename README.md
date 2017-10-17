@@ -12,7 +12,7 @@ The model marking consists of the following format `BCExyy` and optional suffix 
 
 The following table lists the available models:
 
-| Model  | Type     | Module Count | Sigfox | O-ring  | Module Configuration                                                                      |                                          |
+| Model  | Type     | Module Count | Sigfox | O-ring  | Module Configuration                                                                      | Picture                                  |
 |--------|----------|:------------:|--------|---------|-------------------------------------------------------------------------------------------|------------------------------------------|
 | BCE101 | Narrow   | 3            | No     | 45x2 mm | Mini Cover Module<br>Core Module<br>Mini Battery Module                                   |![](doc/bce101-1.png)![](doc/bce101-2.png)|
 | BCE102 | Narrow   | 4            | Yes    | 45x2 mm | Mini Cover Module<br>Core Module<br>Sigfox Module<br>Mini Battery Module                  |![](doc/bce102-1.png)                     |
