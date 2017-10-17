@@ -23,9 +23,12 @@ The following table lists the available models:
 | BCE302 | Wide (*3)| 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>Encoder Module<br>Power Module                               |                                          |
 | BCE501 | Custom   | 3            | Yes    | No      | Core Module<br>Sensor Module<br>Mini Battery Module<br>Flood Sensor LD81                  |![](doc/bce501-1.png)![](doc/bce501-2.png)|
 
-> Enclosures are optimized for last version of Modules using 2.5 mm pin header plastic housing except note *1,*2,*3:<br />
-> Note *1: Micro USB connector position is optimized for old low pprofile version of Core Module with 1.5 mm pin header housing.<br />
-> Note *2: Micro USB connector position and enclosure height is optimized for old low profile version of Core Module with 1.5 mm pin header housing, Power Module growe is optimized for 1.0 mm old version PCB inted of 1.5 mm.<br />
+> Enclosures are optimized for last version of Modules using 2.5 mm pin header plastic housing except note *1,*2,*3:
+
+> Note *1: Micro USB connector position is optimized for old low pprofile version of Core Module with 1.5 mm pin header housing.
+
+> Note *2: Micro USB connector position and enclosure height is optimized for old low profile version of Core Module with 1.5 mm pin header housing, Power Module growe is optimized for 1.0 mm old version PCB inted of 1.5 mm.
+
 > Note *3: Invalid order of modules (Power - Encoder), Power Module growe is optimized for 1.0 mm old version PCB inted of 1.5 mm.
 
 # License
