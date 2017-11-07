@@ -1,4 +1,4 @@
-<a href="https://www.bigclown.com"><img src="https://s3.eu-central-1.amazonaws.com/bigclown/gh-readme-logo.png" alt="BigClown Logo" align="right"></a>
+<a href="https://www.bigclown.com/"><img src="https://bigclown.sirv.com/logo.png" width="200" height="59" alt="BigClown Logo" align="right"></a>
 
 # BigClown Enclosures
 
@@ -23,13 +23,13 @@ The following table lists the available models:
 | BCE302 | Wide (*3)| 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>Encoder Module<br>Power Module                               |                                          |
 | BCE501 | Custom   | 3            | Yes    | No      | Core Module<br>Sensor Module<br>Mini Battery Module<br>Flood Sensor LD81                  |![](doc/bce501-1.png)![](doc/bce501-2.png)|
 
-> Enclosures are optimized for last version of Modules using 2.5 mm pin header plastic housing except note *1,*2,*3:
+> Enclosures are optimized for last version of modules using 2.54 mm pin header plastic housing except note *1,*2,*3:
 
-> Note *1: Micro USB connector position is optimized for old low pprofile version of Core Module with 1.5 mm pin header housing.
+> Note *1: Micro USB connector position is optimized for old low profile version of Core Module with 1.5 mm pin header housing.
 
-> Note *2: Micro USB connector position and enclosure height is optimized for old low profile version of Core Module with 1.5 mm pin header housing, Power Module growe is optimized for 1.0 mm old version PCB inted of 1.5 mm.
+> Note *2: Micro USB connector position and enclosure height is optimized for old low profile version of Core Module with 1.5 mm pin header housing, Power Module growe is optimized for 1.0 mm old version PCB instead of 1.5 mm.
 
-> Note *3: Invalid order of modules (Power - Encoder), Power Module growe is optimized for 1.0 mm old version PCB inted of 1.5 mm.
+> Note *3: Invalid order of modules (Power - Encoder), Power Module growe is optimized for 1.0 mm old version PCB instead of 1.5 mm.
 
 # License
 
@@ -37,4 +37,4 @@ This project is licensed under the [Attribution-ShareAlike 4.0 International](ht
 
 ---
 
-Made with &#x2764;&nbsp; by [BigClown Labs s.r.o.](https://www.bigclown.com) in Czech Republic.
+Made with &#x2764;&nbsp; by [**HARDWARIO s.r.o.**](https://www.hardwario.com/) in the heart of Europe.
