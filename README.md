@@ -22,9 +22,10 @@ The following table lists the available models:
 | BCE301 | Wide     | 3            | No     | 70x2 mm | Cover Module<br>Core Module<br>Power Module                                               |![](doc/bce301-1.png)![](doc/bce301-2.png)|
 | BCE501 | Custom   | 3            | Yes    | No      | Core Module<br>Sensor Module<br>Mini Battery Module<br>Flood Sensor LD81                  |![](doc/bce501-1.png)![](doc/bce501-2.png)|
 
-> Enclosures are optimized for last version of Modules using 2.5 mm pin header plastic housing except note *1,*2,*3:
+> Enclosures are optimized for last version of Modules using 2.5 mm pin header plastic housing except note *1.
+> All models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.2 mm or better.
 
-> Note *1: Micro USB connector position is optimized for old low pprofile version of Core Module with 1.5 mm pin header housing, but 2.5 mm version is usable too.
+> Note *1: Micro USB connector position is optimized for old low profile version of Core Module with 1.5 mm pin header housing, but 2.5 mm version is usable too.
 
 # License
 
