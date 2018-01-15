@@ -19,8 +19,11 @@ The following table lists the available models:
 | BCE104 | Narrow   | 5            | Yes    | 45x2 mm | Mini Cover Module<br>Core Module<br>Sensor Module<br>Sigfox Module<br>Mini Battery Module |![](doc/bce104-1.png)![](doc/bce104-2.png)|
 | BCE201 | Wide (*1)| 4            | No     | 70x2 mm | Cover Module<br>Core Module<br>CO2 Module<br>Battery Module                               |![](doc/bce201-1.png)![](doc/bce201-2.png)|
 | BCE202 | Wide     | 5            | Yes    | 70x2 mm | Cover Module<br>Core Module<br>Sigfox Module<br>CO2 Module<br>Battery Module              |![](doc/bce202-1.png)![](doc/bce202-2.png)|
+| BCE203 | Wide     | 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>CO2 Module<br>Battery Module                                 |![](doc/bce203-1.png)                     |
 | BCE301 | Wide     | 3            | No     | 70x2 mm | Cover Module<br>Core Module<br>Power Module                                               |![](doc/bce301-1.png)![](doc/bce301-2.png)|
+| BCE303 | Wide     | 3            | No     | 70x2 mm | Cover Module<br>Core Module<br>Battery Module                                             |                                          |
 | BCE501 | Custom   | 3            | Yes    | No      | Core Module<br>Sensor Module<br>Mini Battery Module<br>Flood Sensor LD81                  |![](doc/bce501-1.png)![](doc/bce501-2.png)|
+
 
 > Enclosures are optimized for last version of Modules using 2.5 mm pin header plastic housing except note *1.
 > All models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.2 mm or better.
