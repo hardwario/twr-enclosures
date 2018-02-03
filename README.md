@@ -27,7 +27,7 @@ The following table lists the available models:
 
 
 > Enclosures are optimized for last version of Modules using 2.5 mm pin header plastic housing except note *1.
-> All models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.2 mm or better.
+> Models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.2 mm or better.
 
 > Note *1: Micro USB connector position is optimized for old low profile version of Core Module with 1.5 mm pin header housing, but 2.5 mm version is usable too.
 
@@ -36,7 +36,9 @@ List of available accessories:
 | Model  | Description                                      | Picture                                  |
 |--------|--------------------------------------------------|------------------------------------------|
 | PIR-CV | Flat Cover for PIR Module<br>                    |                                          |
-| LED-HD | Holder for 3mm LED or phototransistor SFH 3310   |![](doc/led-hd.png)                       |                      
+| LED-HD | Holder for 3mm LED or phototransistor SFH 3310   |![](doc/led-hd.png)                       |
+
+> Models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.15 mm.
 
 # License
 
