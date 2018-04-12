@@ -21,7 +21,7 @@ The following table lists the available models:
 | BCE201 | Wide     | 4            | No     | 70x2 mm | Cover Module<br>Core Module<br>CO2 Module<br>Battery Module                               |![](doc/bce201-1.png)![](doc/bce201-2.png)|
 | BCE202 | Wide     | 5            | Yes    | 70x2 mm | Cover Module<br>Core Module<br>Sigfox Module<br>CO2 Module<br>Battery Module              |![](doc/bce202-1.png)![](doc/bce202-2.png)|
 | BCE203 | Wide     | 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>CO2 Module<br>Battery Module (*1)                            |![](doc/bce203-1.png)                     |
-| BCE204 | Wide     | 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>CO2 Module or Tag Module<br>Battery Module (*2)              |![](doc/bce203-1.png)                     |
+| BCE204 | Wide     | 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>CO2 Module or Tag Module<br>Battery Module (*2)              |![](doc/bce204-1.png)                     |
 | BCE301 | Wide     | 3            | No     | 70x2 mm | Cover Module<br>Core Module<br>Power Module                                               |![](doc/bce301-1.png)![](doc/bce301-2.png)|
 | BCE303 | Wide     | 3            | No     | 70x2 mm | Cover Module<br>Core Module<br>Battery Module                                             |                                          |
 | BCE501 | Custom   | 3            | No     | No      | Core Module<br>Sensor Module<br>Mini Battery Module<br>Flood Sensor LD81                  |![](doc/bce501-1.png)![](doc/bce501-2.png)|
