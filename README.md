@@ -18,9 +18,10 @@ The following table lists the available models:
 | BCE102 | Narrow   | 4            | Yes    | 45x2 mm | Mini Cover Module<br>Core Module<br>Sigfox Module<br>Mini Battery Module                  |![](doc/bce102-1.png)                     |
 | BCE103 | Narrow   | 4            | No     | 45x2 mm | Mini Cover Module<br>Core Module<br>Sensor Module<br>Mini Battery Module                  |                                          |
 | BCE104 | Narrow   | 5            | Yes    | 45x2 mm | Mini Cover Module<br>Core Module<br>Sensor Module<br>Sigfox Module<br>Mini Battery Module |![](doc/bce104-1.png)![](doc/bce104-2.png)|
-| BCE201 | Wide (*1)| 4            | No     | 70x2 mm | Cover Module<br>Core Module<br>CO2 Module<br>Battery Module                               |![](doc/bce201-1.png)![](doc/bce201-2.png)|
+| BCE201 | Wide     | 4            | No     | 70x2 mm | Cover Module<br>Core Module<br>CO2 Module<br>Battery Module                               |![](doc/bce201-1.png)![](doc/bce201-2.png)|
 | BCE202 | Wide     | 5            | Yes    | 70x2 mm | Cover Module<br>Core Module<br>Sigfox Module<br>CO2 Module<br>Battery Module              |![](doc/bce202-1.png)![](doc/bce202-2.png)|
-| BCE203 | Wide     | 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>CO2 Module<br>Battery Module                                 |![](doc/bce203-1.png)                     |
+| BCE203 | Wide     | 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>CO2 Module<br>Battery Module (*1)                            |![](doc/bce203-1.png)                     |
+| BCE204 | Wide     | 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>CO2 Module or Tag Module<br>Battery Module (*2)              |![](doc/bce203-1.png)                     |
 | BCE301 | Wide     | 3            | No     | 70x2 mm | Cover Module<br>Core Module<br>Power Module                                               |![](doc/bce301-1.png)![](doc/bce301-2.png)|
 | BCE303 | Wide     | 3            | No     | 70x2 mm | Cover Module<br>Core Module<br>Battery Module                                             |                                          |
 | BCE501 | Custom   | 3            | No     | No      | Core Module<br>Sensor Module<br>Mini Battery Module<br>Flood Sensor LD81                  |![](doc/bce501-1.png)![](doc/bce501-2.png)|
@@ -29,13 +30,15 @@ The following table lists the available models:
 > Enclosures are optimized for last version of Modules using 2.5 mm pin header plastic housing except note *1.
 > Models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.2 mm or better.
 
-> Note *1: Micro USB connector position is optimized for old low profile version of Core Module with 1.5 mm pin header housing, but 2.5 mm version is usable too.
+> Note *1: Suitable for Lux Meter Tag, Tags are not covered.
+> Note *2: CO2 Module can be replaced by Tag Module, Tags are covered, part bce204c.stl is optimized do 0.15 mm resolution.
 
 List of available accessories:
 
 | Model  | Description                                      | Picture                                  |
 |--------|--------------------------------------------------|------------------------------------------|
 | PIR-CV | Flat Cover for PIR Module<br>                    |                                          |
+| PIR-SC | PIR Cover Hat<br>                                |                                          |
 | LED-HD | Holder for 3mm LED or phototransistor SFH 3310   |![](doc/led-hd.png)                       |
 
 > Models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.15 mm.
