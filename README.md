@@ -15,7 +15,7 @@ The following table lists the available models:
 | Model  | Type     | Module Count | Sigfox | O-ring  | Module Configuration                                                                      | Picture                                  |
 |--------|----------|:------------:|--------|---------|-------------------------------------------------------------------------------------------|------------------------------------------|
 | BCE101 | Narrow   | 3            | No     | 45x2 mm | Mini Cover Module<br>Core Module<br>Mini Battery Module                                   |![](doc/bce101-1.png)![](doc/bce101-2.png)|
-| BCE101v2 | Narrow | 3            | No     | 45x2 mm | Mini Cover Module<br>Core Module R2<br>Mini Battery Module (*1)                           |                                          |
+| BCE101v2 | Narrow | 3            | No     | 45x2 mm | Mini Cover Module<br>Core Module R2 (*1)<br>Mini Battery Module                           |                                          |
 | BCE102 | Narrow   | 4            | Yes    | 45x2 mm | Mini Cover Module<br>Core Module<br>Sigfox Module<br>Mini Battery Module                  |![](doc/bce102-1.png)                     |
 | BCE103 | Narrow   | 4            | No     | 45x2 mm | Mini Cover Module<br>Core Module<br>Sensor Module<br>Mini Battery Module                  |                                          |
 | BCE104 | Narrow   | 5            | Yes    | 45x2 mm | Mini Cover Module<br>Core Module<br>Sensor Module<br>Sigfox Module<br>Mini Battery Module |![](doc/bce104-1.png)![](doc/bce104-2.png)|
