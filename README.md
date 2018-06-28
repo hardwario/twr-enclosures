@@ -12,19 +12,19 @@ The model marking consists of the following format `BCExyy` and optional suffix 
 
 The following table lists the available models:
 
-| Model  | Type     | Module Count | Sigfox | O-ring  | Module Configuration                                                                      | Picture                                  |
-|--------|----------|:------------:|--------|---------|-------------------------------------------------------------------------------------------|------------------------------------------|
+| Model     | Type     | Module Count | Sigfox | O-ring  | Module Configuration                                                                      | Picture                               |
+|-----------|----------|:------------:|--------|---------|-------------------------------------------------------------------------------------------|------------------------------------------|
 | BCE101-R1 | Narrow   | 3            | No     | 45x2 mm | Mini Cover Module<br>Core Module<br>Mini Battery Module                                   |![](doc/bce101-1.png)![](doc/bce101-2.png)|
-| BCE101-R2 | Narrow | 3            | No     | 45x2 mm | Mini Cover Module<br>Core Module R2 (*1)<br>Mini Battery Module                           |                                          |
-| BCE102-R1 | Narrow   | 4            | Yes    | 45x2 mm | Mini Cover Module<br>Core Module<br>Sigfox Module<br>Mini Battery Module                  |![](doc/bce102-1.png)                     |
-| BCE103-R1 | Narrow   | 4            | No     | 45x2 mm | Mini Cover Module<br>Core Module<br>Sensor Module<br>Mini Battery Module                  |                                          |
+| BCE101-R2 | Narrow   | 3            | No     | 45x2 mm | Mini Cover Module<br>Core Module R2 (*1)<br>Mini Battery Module                             |                                     |
+| BCE102-R1 | Narrow   | 4            | Yes    | 45x2 mm | Mini Cover Module<br>Core Module<br>Sigfox Module<br>Mini Battery Module                  |![](doc/bce102-1.png)                  |
+| BCE103-R1 | Narrow   | 4            | No     | 45x2 mm | Mini Cover Module<br>Core Module<br>Sensor Module<br>Mini Battery Module                  |                                       |
 | BCE104-R1 | Narrow   | 5            | Yes    | 45x2 mm | Mini Cover Module<br>Core Module<br>Sensor Module<br>Sigfox Module<br>Mini Battery Module |![](doc/bce104-1.png)![](doc/bce104-2.png)|
 | BCE201-R1 | Wide     | 4            | No     | 70x2 mm | Cover Module<br>Core Module<br>CO2 Module<br>Battery Module                               |![](doc/bce201-1.png)![](doc/bce201-2.png)|
 | BCE202-R1 | Wide     | 5            | Yes    | 70x2 mm | Cover Module<br>Core Module<br>Sigfox Module<br>CO2 Module<br>Battery Module              |![](doc/bce202-1.png)![](doc/bce202-2.png)|
-| BCE203-R1 | Wide     | 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>CO2 Module<br>Battery Module (*2)                            |![](doc/bce203-1.png)                     |
-| BCE204-R1 | Wide     | 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>CO2 Module or Tag Module<br>Battery Module (*3)              |![](doc/bce204-1.png)                     |
+| BCE203-R1 | Wide     | 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>CO2 Module<br>Battery Module (*2)                            |![](doc/bce203-1.png)                  |
+| BCE204-R1 | Wide     | 4            | No     | 70x2 mm | LCD Module<br>Core Module<br>CO2 Module or Tag Module<br>Battery Module (*3)              |![](doc/bce204-1.png)                  |
 | BCE301-R1 | Wide     | 3            | No     | 70x2 mm | Cover Module<br>Core Module<br>Power Module                                               |![](doc/bce301-1.png)![](doc/bce301-2.png)|
-| BCE303-R1 | Wide     | 3            | No     | 70x2 mm | Cover Module<br>Core Module<br>Battery Module                                             |                                          |
+| BCE303-R1 | Wide     | 3            | No     | 70x2 mm | Cover Module<br>Core Module<br>Battery Module                                             |                                       |
 | BCE501-R1 | Custom   | 3            | No     | No      | Core Module<br>Sensor Module<br>Mini Battery Module<br>Flood Sensor LD81                  |![](doc/bce501-1.png)![](doc/bce501-2.png)|
 
 
