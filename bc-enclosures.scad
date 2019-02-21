@@ -1,6 +1,18 @@
 use <MCAD/boxes.scad>;
 use <MCAD/triangles.scad>;
  
+ 
+//parameter: "A" = part A; "B" = part B; "ALL" all box 
+
+BCE101r2("B"); //Mini Battery + Core R2 + Mini Cover
+//BCE102r2("B"); //Mini Battery + Sigfox + Core R2 + Mini Cover
+//BCE105r2("B"); //Mini Battery + Sensor R1.1 + Core R2 + Cover
+//BCE106r2("B"); //Mini Battery + Sigfox + Sensor R1.1 + Core R2+ Cover
+//BCE301r2("B"); //Power + Core R2 + Cover
+//BCE304r2("B"); //Power + Sigfox + Core R2 + Cover
+//BCE305r2("B"); //Power + Sigfox + CO2 + Core R2 + Cover
+ 
+ 
 wall=2.0;   // Wall Thickness
 length= 55; 
 cut_length = 16; //Part A / B cut
@@ -33,7 +45,7 @@ cut_type = 0; // [1: old, 0: new]
 sidesonly=1; // [0:No, 1:Yes] round the sides of the box?
 previw_mode = 0; //[0:No, 1:Yes] 1 for faster rendering
 step = 8; // resolution of ring corner - STEP in degrees
-$fn = 100; // RESOLUTION
+$fn = 60; // RESOLUTION
  
 r_MiniUSB=1;
 r_wifi_antenna = 4.8;
@@ -76,9 +88,6 @@ key_height_wall=1.6;
 key_x_roof=8.2;
 key_y_roof=wall;
 key_height_roof=0.35;
-
-BCE305r2("A"); //parameter: "A" = part A; "B" = part B; "ALL" all box 
-//BCE106r2(); 
 
 
 module BCE101r2 (value) { //Mini Battery + Core R2 + Mini Cover
