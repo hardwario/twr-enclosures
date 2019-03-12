@@ -14,7 +14,7 @@ BCE101r2("B"); //Mini Battery + Core R2 + Mini Cover
  
  
 wall=2.0;   // Wall Thickness
-length= 55; 
+length= 55.7; 
 cut_length = 16; //Part A / B cut
 
 // Mounting holes params
@@ -53,10 +53,8 @@ r_wifi_antenna = 4.8;
 PCB_height=1.1;
 fatPCB_height=1.6;
 MiniPCB_width=33;
-MiniPCB_length=55;
  
 PCB_width=88;
-PCB_length=55;
  
 USBmicro_height=5.7;  
 USBmicro_width=12;
@@ -88,6 +86,8 @@ key_height_wall=1.6;
 key_x_roof=8.2;
 key_y_roof=wall;
 key_height_roof=0.35;
+
+
 
 
 module BCE101r2 (value) { //Mini Battery + Core R2 + Mini Cover
@@ -231,21 +231,6 @@ module BCE305r2 (value) { //Power + Sigfox + CO2 + Core R2 + Cover
                 Power();                       
     }
 }
-
-
-
-             
-
-
-
-
-
-
-
-
-
-
-
 
 module screwHole() { 
     color("silver")
@@ -570,43 +555,43 @@ module MiniUSB () {
    
 module MiniPCB () {
     difference () {
-        cube ([MiniPCB_width, MiniPCB_length, PCB_height], center=true);
-        translate ([MiniPCB_width/2, MiniPCB_length/2, -PCB_height/2]) TRC ();
-        translate ([-MiniPCB_width/2, MiniPCB_length/2, -PCB_height/2]) TLC ();
-        translate ([-MiniPCB_width/2, -MiniPCB_length/2, -PCB_height/2]) BLC ();
-        translate ([MiniPCB_width/2, -MiniPCB_length/2, -PCB_height/2]) BRC ();
+        cube ([MiniPCB_width, length, PCB_height], center=true);
+        translate ([MiniPCB_width/2, length/2, -PCB_height/2]) TRC ();
+        translate ([-MiniPCB_width/2, length/2, -PCB_height/2]) TLC ();
+        translate ([-MiniPCB_width/2, -length/2, -PCB_height/2]) BLC ();
+        translate ([MiniPCB_width/2, -length/2, -PCB_height/2]) BRC ();
     }
         
 }
    
 module fatMiniPCB () {
     difference () {
-        cube ([MiniPCB_width, MiniPCB_length, fatPCB_height], center=true);
-        translate ([MiniPCB_width/2, MiniPCB_length/2, -fatPCB_height/2]) TRC ();
-        translate ([-MiniPCB_width/2, MiniPCB_length/2, -fatPCB_height/2]) TLC ();
-        translate ([-MiniPCB_width/2, -MiniPCB_length/2, -fatPCB_height/2]) BLC ();
-        translate ([MiniPCB_width/2, -MiniPCB_length/2, -fatPCB_height/2]) BRC ();
+        cube ([MiniPCB_width, length, fatPCB_height], center=true);
+        translate ([MiniPCB_width/2, length/2, -fatPCB_height/2]) TRC ();
+        translate ([-MiniPCB_width/2, length/2, -fatPCB_height/2]) TLC ();
+        translate ([-MiniPCB_width/2, -length/2, -fatPCB_height/2]) BLC ();
+        translate ([MiniPCB_width/2, -length/2, -fatPCB_height/2]) BRC ();
     }
 }
  
 module PCB () {
     difference () {
-        cube ([PCB_width, PCB_length, PCB_height], center=true);
-        translate ([PCB_width/2, PCB_length/2, -PCB_height/2]) TRC ();
-        translate ([-PCB_width/2, PCB_length/2, -PCB_height/2]) TLC ();
-        translate ([-PCB_width/2, -PCB_length/2, -PCB_height/2]) BLC ();
-        translate ([PCB_width/2, -PCB_length/2, -PCB_height/2]) BRC ();
+        cube ([PCB_width, length, PCB_height], center=true);
+        translate ([PCB_width/2, length/2, -PCB_height/2]) TRC ();
+        translate ([-PCB_width/2, length/2, -PCB_height/2]) TLC ();
+        translate ([-PCB_width/2, -length/2, -PCB_height/2]) BLC ();
+        translate ([PCB_width/2, -length/2, -PCB_height/2]) BRC ();
     }
           
 }
      
 module fatPCB () {
     difference () {
-        cube ([PCB_width, PCB_length, fatPCB_height], center=true);
-        translate ([PCB_width/2, PCB_length/2, -fatPCB_height/2]) TRC ();
-        translate ([-PCB_width/2, PCB_length/2, -fatPCB_height/2]) TLC ();
-        translate ([-PCB_width/2, -PCB_length/2, -fatPCB_height/2]) BLC ();
-        translate ([PCB_width/2, -PCB_length/2, -fatPCB_height/2]) BRC ();
+        cube ([PCB_width, length, fatPCB_height], center=true);
+        translate ([PCB_width/2, length/2, -fatPCB_height/2]) TRC ();
+        translate ([-PCB_width/2, length/2, -fatPCB_height/2]) TLC ();
+        translate ([-PCB_width/2, -length/2, -fatPCB_height/2]) BLC ();
+        translate ([PCB_width/2, -length/2, -fatPCB_height/2]) BRC ();
         }
         
 }
@@ -614,18 +599,18 @@ module fatPCB () {
 module MiniCore2R21 () {
     translate ([0,0,fatPCB_height/2])
     fatMiniPCB ();
-    translate([0,-MiniPCB_length/2-wall,0])
+    translate([0,-length/2-wall,0])
         MiniUSB ();
 }
  
 module MiniSensorModuleR11() {
    translate ([0, 0, 0]) fatMiniPCB ();
-   translate ([(MiniPCB_width/2)-(MiniPCB_width/2)-(terminal185mm_width/2), -MiniPCB_length/2-terminal185mm_length, fatPCB_height/2]) terminal185mm ();   
+   translate ([(MiniPCB_width/2)-(MiniPCB_width/2)-(terminal185mm_width/2), -length/2-terminal185mm_length, fatPCB_height/2+0.9]) terminal185mm ();   
     } 
 module MiniSigfoxR21 () {
     translate ([0,0,fatPCB_height/2])
     fatMiniPCB ();
-    translate ([0, MiniPCB_length/2, 2.4]) {
+    translate ([0, length/2, 2.1]) {
             rotate ([-90, 0, 0])
             cylinder (h=wall, r=r_wifi_antenna);      
     }
@@ -667,9 +652,9 @@ module Power () {
     
     translate ([0,0,fatPCB_height/2])
     fatPCB ();
-    translate ([-PCB_width/2+4.2, -PCB_length/2-wall, -terminal17mm_bottom_recess+fatPCB_height])terminal17mm ();
-    translate ([PCB_width/2-4.65-terminal12_3mm_width, -PCB_length/2-wall, -terminal12_3mm_bottom_recess+fatPCB_height]) terminal12_3mm ();
-    translate([-hole_jack_width/2, -PCB_length/2-wall, +fatPCB_height])
+    translate ([-PCB_width/2+4.2, -length/2-wall, -terminal17mm_bottom_recess+fatPCB_height])terminal17mm ();
+    translate ([PCB_width/2-4.65-terminal12_3mm_width, -length/2-wall, -terminal12_3mm_bottom_recess+fatPCB_height]) terminal12_3mm ();
+    translate([-hole_jack_width/2, -length/2-wall, +fatPCB_height])
         cube([hole_jack_width, hole_jack_length, hole_jack_height]); 
    
     }
