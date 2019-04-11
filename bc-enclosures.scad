@@ -92,7 +92,7 @@ key_height_roof=0.35;
 
 module BCE101r2 (value) { //Mini Battery + Core R2 + Mini Cover
     width= 33.1; 
-    height= 31;
+    height= 32.1;
     holder_diff = 1.25;
     holder_pos = 13;   
 
@@ -148,7 +148,7 @@ module BCE105r2 (value) { //Mini Battery + Sensor R1.1 + Core R2 + Cover
 }
 module BCE106r2 (value) { //Mini Battery + Sigfox + Sensor R1.1 + Core R2+ Cover
     width= 33.1; 
-    height= 55.8;
+    height= 56.9;
     holder_diff = 1.25;
     holder_pos = 13;   
 
@@ -170,7 +170,7 @@ module BCE106r2 (value) { //Mini Battery + Sigfox + Sensor R1.1 + Core R2+ Cover
 }
 module BCE301r2 (value) { //Power + Core R2 + Cover
     width= 88.15; 
-    height= 37;
+    height= 38.1;
     holder_diff = 1.85;
     holder_pos = 10.6;
 
@@ -180,7 +180,7 @@ module BCE301r2 (value) { //Power + Core R2 + Cover
                 holder(width, height, holder_diff, holder_pos, value);
                 }
 
-            translate([0,0, 24.9])
+            translate([0,0, 24.7])
                 MiniCore2R21();
             translate([0,0, 12])
                 Power();
@@ -191,7 +191,7 @@ module BCE301r2 (value) { //Power + Core R2 + Cover
 }
 module BCE304r2 (value) { //Power + Sigfox + Core R2 + Cover
     width= 88.15; 
-    height= 49.5;
+    height= 50.6;
     holder_diff = 1.85;
     holder_pos = 10.6; 
 
@@ -212,7 +212,7 @@ module BCE304r2 (value) { //Power + Sigfox + Core R2 + Cover
     }   
 module BCE305r2 (value) { //Power + Sigfox + CO2 + Core R2 + Cover
     width= 88.15;  
-    height= 61.5;
+    height= 62.6;
     holder_diff = 1.85;
     holder_pos = 10.6; 
     
