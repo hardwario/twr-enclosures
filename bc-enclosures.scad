@@ -4,9 +4,10 @@ use <MCAD/triangles.scad>;
  
 //parameter: "A" = part A; "B" = part B; "ALL" all box 
 
-BCE101r2("B"); //Mini Battery + Core R2 + Mini Cover
+//BCE101r2("B"); //Mini Battery + Core R2 + Mini Cover
 //BCE102r2("B"); //Mini Battery + Sigfox + Core R2 + Mini Cover
-//BCE105r2("B"); //Mini Battery + Sensor R1.1 + Core R2 + Cover
+//BCE103r2("B"); //Mini Battery + 1-Wire + Core R2 + Mini Cover
+BCE105r2("B"); //Mini Battery + Sensor R1.1 + Core R2 + Cover
 //BCE106r2("B"); //Mini Battery + Sigfox + Sensor R1.1 + Core R2+ Cover
 //BCE301r2("B"); //Power + Core R2 + Cover
 //BCE304r2("B"); //Power + Sigfox + Core R2 + Cover
@@ -45,8 +46,7 @@ cut_type = 0; // [1: old, 0: new]
 sidesonly=1; // [0:No, 1:Yes] round the sides of the box?
 previw_mode = 0; //[0:No, 1:Yes] 1 for faster rendering
 step = 8; // resolution of ring corner - STEP in degrees
-$fn = 60; // RESOLUTION
- 
+$fn = 50; // RESOLUTION
 r_MiniUSB=1;
 r_wifi_antenna = 4.8;
  
@@ -59,21 +59,27 @@ PCB_width=88;
 USBmicro_height=5.7;  
 USBmicro_width=12;
 USBmicro_length=wall/2;
-USBmicro_hole=3.1;
+USBmicro_hole=3.5;
 USBmicro_hole_span=8.2;
- 
+  
+terminal185mm_height=7.6;
+terminal185mm_width=19;
+terminal185mm_length=wall;
+terminal185mm_upper_recess=1;
+terminal185mm_bottom_recess=4;
+
 terminal17mm_height=8.5;
 terminal17mm_width=17;
 terminal17mm_length=wall;
 terminal17mm_upper_recess=2.5;
 terminal17mm_bottom_recess=4.8;
- 
-terminal185mm_height=7.6;
-terminal185mm_width=19;
-terminal185mm_length=wall;
-terminal185mm_upper_recess=1;
-terminal185mm_bottom_recess=4; 
- 
+
+terminal15mm_height=7.7;
+terminal15mm_width=15.5;
+terminal15mm_length=wall;
+terminal15mm_upper_recess=1;
+terminal15mm_bottom_recess=4.8;
+
 terminal12_3mm_height=7.6;
 terminal12_3mm_width=12.6;
 terminal12_3mm_length=wall;
@@ -126,6 +132,25 @@ module BCE102r2 (value) { //Mini Battery + Sigfox + Core R2 + Mini Cover
                 mountingHoles1xx();            
         }
 }
+module BCE103r2 (value) { //Mini Battery + Sigfox + Core R2 + Mini Cover
+    width= 33.1; 
+    height= 45.5;
+    holder_diff = 1.25;
+    holder_pos = 13;   
+
+        difference() {
+            translate([0,0,height/2+wall/2]) {
+                hollowbox(width, height, holder_diff, value); 
+                holder(width, height, holder_diff, holder_pos, value);
+                }
+            translate([0,0, 31.6])
+                MiniCore2R21();
+            translate([0,0, 19])
+                MiniSensorModuleR10();
+            translate([0, 9, 0])
+                mountingHoles1xx();            
+        }
+}
 module BCE105r2 (value) { //Mini Battery + Sensor R1.1 + Core R2 + Cover
     width= 33.1; 
     height= 44.2;
@@ -138,9 +163,9 @@ module BCE105r2 (value) { //Mini Battery + Sensor R1.1 + Core R2 + Cover
                 holder(width, height, holder_diff, holder_pos, value);
                 }
        
-            translate([0,0, 31.6])
+            translate([0,0, 31.2])
                 MiniCore2R21();
-            translate([0,0, 19])
+            translate([0,0, 18.4])
                 MiniSensorModuleR11();
             translate([0, 9, 0])
                 mountingHoles1xx();            
@@ -537,7 +562,7 @@ module mountingHoles3xx(){ // holes 3xx boxes
 module MiniUSB () {
     minkowski() {
         translate([0, 0, USBmicro_height/2])
-        cube([USBmicro_width,USBmicro_length/2,USBmicro_height], center=true);
+        cube([USBmicro_width, USBmicro_length/2 ,USBmicro_height], center=true);
         rotate ([-90, 0, 0])
             cylinder(h=USBmicro_length/2, r=r_MiniUSB);
     }
@@ -545,9 +570,9 @@ module MiniUSB () {
     translate([-((USBmicro_hole_span-USBmicro_hole)/2), 0, USBmicro_height/2]){
         rotate([-90,0,0]) {
             hull() {
-                cylinder(h=wall, d=USBmicro_hole);
+                cylinder(h=wall+0.1, d=USBmicro_hole);
                 translate([USBmicro_hole_span-USBmicro_hole,0,0])
-                    cylinder(h=wall, d=USBmicro_hole);  
+                    cylinder(h=wall+0.1, d=USBmicro_hole);  
             }        
         }          
     }
@@ -606,7 +631,11 @@ module MiniCore2R21 () {
 module MiniSensorModuleR11() {
    translate ([0, 0, 0]) fatMiniPCB ();
    translate ([(MiniPCB_width/2)-(MiniPCB_width/2)-(terminal185mm_width/2), -length/2-terminal185mm_length, fatPCB_height/2+0.9]) terminal185mm ();   
-    } 
+    }
+module MiniSensorModuleR10() { //1-wire
+   translate ([0, 0, 0]) fatMiniPCB ();
+   translate ([(MiniPCB_width/2)-(MiniPCB_width/2)-(terminal15mm_width/2), -length/2-terminal15mm_length, +fatPCB_height/2-terminal15mm_bottom_recess+0.1]) terminal15mm ();   
+    }  
 module MiniSigfoxR21 () {
     translate ([0,0,fatPCB_height/2])
     fatMiniPCB ();
@@ -631,7 +660,16 @@ module terminal17mm(){ //3pin
         key ();
         }  
 }
- 
+module terminal15mm(){ //3pin
+   
+    translate ([0, 0, terminal15mm_bottom_recess])
+    cube([terminal15mm_width, wall+0.1, terminal15mm_height]); //díra na konektor
+     
+    translate([0,0, terminal15mm_bottom_recess+terminal15mm_height])
+    cube([terminal15mm_width, wall/2, terminal15mm_upper_recess]); //horní zahloubení
+   
+        translate([0, 0, 0]) cube([terminal15mm_width, wall/2, terminal15mm_bottom_recess]); //dolni zahloubení 
+} 
 module key () {
     translate([0, 0, 0]) cube([key_width_wall, key_length_wall, key_height_wall]); //left
     translate([key_x_roof-key_width_wall, 0, 0]) cube([key_width_wall, key_length_wall, key_height_wall]);// pravy
