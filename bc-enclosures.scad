@@ -6,9 +6,15 @@ use <MCAD/triangles.scad>;
 
 //BCE101r2("B"); //Mini Battery + Core R2 + Mini Cover
 //BCE102r2("B"); //Mini Battery + Sigfox + Core R2 + Mini Cover
-//BCE103r2("B"); //Mini Battery + 1-Wire + Core R2 + Mini Cover
-BCE105r2("B"); //Mini Battery + Sensor R1.1 + Core R2 + Cover
+//BCE103r2("A"); //Mini Battery + 1-Wire + Core R2 + Mini Cover
+//BCE104r2("B"); //Mini Battery + Sigfox + 1-Wire + Core R2 + Mini Cover
+//BCE105r2("B"); //Mini Battery + Sensor R1.1 + Core R2 + Cover
 //BCE106r2("B"); //Mini Battery + Sigfox + Sensor R1.1 + Core R2+ Cover
+//BCE108r2("B"); //Mini Battery + Relay + Core R2 + Mini Cover
+BCE109r2("B"); //Mini Battery + Sigfox + Relay + Core R2 + Mini Cover
+//BCE201r2("B"); //Battery + CO2 + Core R2+ Cover
+//BCE202r2("B"); //Battery + CO2 + Sigfox + Core R2 + Cover
+//BCE205r2("B"); //Battery + Core R2 + Cover
 //BCE301r2("B"); //Power + Core R2 + Cover
 //BCE304r2("B"); //Power + Sigfox + Core R2 + Cover
 //BCE305r2("B"); //Power + Sigfox + CO2 + Core R2 + Cover
@@ -132,7 +138,7 @@ module BCE102r2 (value) { //Mini Battery + Sigfox + Core R2 + Mini Cover
                 mountingHoles1xx();            
         }
 }
-module BCE103r2 (value) { //Mini Battery + Sigfox + Core R2 + Mini Cover
+module BCE103r2 (value) { //Mini Battery + 1-Wire + Core R2 + Mini Cove
     width= 33.1; 
     height= 45.5;
     holder_diff = 1.25;
@@ -147,6 +153,28 @@ module BCE103r2 (value) { //Mini Battery + Sigfox + Core R2 + Mini Cover
                 MiniCore2R21();
             translate([0,0, 19])
                 MiniSensorModuleR10();
+            translate([0, 9, 0])
+                mountingHoles1xx();            
+        }
+}
+module BCE104r2 (value) { //Mini Battery + Sigfox + 1-Wire + Core R2 + Mini Cover
+    width= 33.1; 
+    height= 56.9;
+    holder_diff = 1.25;
+    holder_pos = 13;   
+
+        difference() {
+            translate([0,0,height/2+wall/2]) {
+                hollowbox(width, height, holder_diff, value); 
+                holder(width, height, holder_diff, holder_pos, value);
+                }
+                            
+            translate([0,0, 44.1])
+                MiniCore2R21();        
+            translate([0,0, 31.8])
+                MiniSensorModuleR10();
+            translate([0,0, 18.9])
+                MiniSigfoxR21();
             translate([0, 9, 0])
                 mountingHoles1xx();            
         }
@@ -192,6 +220,110 @@ module BCE106r2 (value) { //Mini Battery + Sigfox + Sensor R1.1 + Core R2+ Cover
             translate([0, 9, 0])
                 mountingHoles1xx();            
         }
+}
+
+module BCE108r2 (value) { //Mini Battery + Relay + Core R2 + Mini Cover
+    width= 33.1; 
+    height= 44;
+    holder_diff = 1.25;
+    holder_pos = 13;   
+
+        difference() {
+            translate([0,0,height/2+wall/2]) {
+                hollowbox(width, height, holder_diff, value); 
+                holder(width, height, holder_diff, holder_pos, value);
+                }
+                               
+            translate([0,0, 31.27])
+                MiniCore2R21();
+            translate([0,0, 19.05])
+                MiniRelay();
+            translate([0, 9, 0])
+                mountingHoles1xx();            
+        }
+}
+
+module BCE109r2 (value) { //Mini Battery + Sigfox + Relay + Core R2 + Mini Cover
+    width= 33.1; 
+    height= 56;
+    holder_diff = 1.25;
+    holder_pos = 13;   
+
+        difference() {
+            translate([0,0,height/2+wall/2]) {
+                hollowbox(width, height, holder_diff, value); 
+                holder(width, height, holder_diff, holder_pos, value);
+                }
+                            
+            translate([0,0, 43.0])
+                MiniCore2R21();        
+            translate([0,0, 31])
+                MiniRelay();
+            translate([0,0, 19])
+                MiniSigfoxR21();
+            translate([0, 9, 0])
+                mountingHoles1xx();            
+        }
+}
+
+module BCE201r2 (value) { //Battery + CO2 + Core R2+ Cover
+    width= 88.15; 
+    height= 51.1;
+    holder_diff = PCB_height+0.25;
+    holder_pos = 11.6;
+
+    difference() {
+            translate([0,0,height/2+wall/2]) {
+                hollowbox(width, height, holder_diff, value); 
+                holder(width, height, holder_diff, holder_pos, value);
+                }
+
+            translate([0,0, 37.3])
+                MiniCore2R21();
+            translate([23, -8, 0]) mountingHoles3xx(); 
+       
+        } 
+  
+}
+
+module BCE202r2 (value) { //Battery + CO2 + Sigfox + Core R2 + Cover
+    width= 88.15; 
+    height= 63.6;
+    holder_diff = PCB_height+0.25;
+    holder_pos = 11.6;
+
+    difference() {
+            translate([0,0,height/2+wall/2]) {
+                hollowbox(width, height, holder_diff, value); 
+                holder(width, height, holder_diff, holder_pos, value);
+                }
+            translate([0,0, 49.8])
+                MiniCore2R21();
+            translate([0,0, 37.3])
+                MiniSigfoxR21();
+            translate([23, -8, 0]) mountingHoles3xx(); 
+       
+        } 
+  
+}
+module BCE205r2 (value) { //Battery +  Core R2  + Cover //BCE303
+    width= 88.15; 
+    height= 39;
+    holder_diff = PCB_height+0.25;
+    holder_pos = 11.6;
+
+    difference() {
+            translate([0,0,height/2+wall/2]) {
+                hollowbox(width, height, holder_diff, value); 
+                holder(width, height, holder_diff, holder_pos, value);
+                }
+
+            translate([0,0, 26.2])
+                MiniCore2R21();
+            translate([23, -8, 0]) mountingHoles3xx(); 
+       
+        } 
+  
 }
 module BCE301r2 (value) { //Power + Core R2 + Cover
     width= 88.15; 
@@ -644,7 +776,14 @@ module MiniSigfoxR21 () {
             cylinder (h=wall, r=r_wifi_antenna);      
     }
 }
- 
+
+module MiniRelay () {
+    translate ([0,0,PCB_height/2])
+    MiniPCB ();
+    translate ([-(terminal12_3mm_width/2), -length/2-terminal12_3mm_length, +PCB_height-terminal12_3mm_bottom_recess+0.1]) 
+        terminal12_3mm ();      
+    
+} 
  
 module terminal17mm(){ //3pin
    
@@ -677,7 +816,7 @@ module key () {
     }
  
 module terminal12_3mm () { //3pin   
-    translate([0, 0, terminal12_3mm_bottom_recess]) cube([terminal12_3mm_width, terminal12_3mm_length, terminal12_3mm_height]); //otvor
+    translate([0, 0, terminal12_3mm_bottom_recess]) cube([terminal12_3mm_width, terminal12_3mm_length+0.1, terminal12_3mm_height]); //otvor
     //prava svorka spodni zhloubeni
     translate([0, 0, 0]) cube([terminal12_3mm_width, terminal12_3mm_length/2, terminal12_3mm_bottom_recess]); //spodni zahloubeni
     translate([0, 0, terminal12_3mm_bottom_recess+terminal12_3mm_height]) cube([terminal12_3mm_width, terminal12_3mm_length/2, terminal12_3mm_upper_recess]); //horni zahloubeni
