@@ -6,14 +6,14 @@ use <MCAD/triangles.scad>;
 
 //BCE101r2("B"); //Mini Battery + Core R2 + Mini Cover
 //BCE102r2("B"); //Mini Battery + Sigfox + Core R2 + Mini Cover
-//BCE103r2("A"); //Mini Battery + 1-Wire + Core R2 + Mini Cover
+//BCE103r2("B"); //Mini Battery + 1-Wire + Core R2 + Mini Cover
 //BCE104r2("B"); //Mini Battery + Sigfox + 1-Wire + Core R2 + Mini Cover
 //BCE105r2("B"); //Mini Battery + Sensor R1.1 + Core R2 + Cover
 //BCE106r2("B"); //Mini Battery + Sigfox + Sensor R1.1 + Core R2+ Cover
 //BCE108r2("B"); //Mini Battery + Relay + Core R2 + Mini Cover
-BCE109r2("B"); //Mini Battery + Sigfox + Relay + Core R2 + Mini Cover
+//BCE109r2("B"); //Mini Battery + Sigfox + Relay + Core R2 + Mini Cover
 //BCE201r2("B"); //Battery + CO2 + Core R2+ Cover
-//BCE202r2("B"); //Battery + CO2 + Sigfox + Core R2 + Cover
+BCE202r2("B"); //Battery + CO2 + Sigfox + Core R2 + Cover
 //BCE205r2("B"); //Battery + Core R2 + Cover
 //BCE301r2("B"); //Power + Core R2 + Cover
 //BCE304r2("B"); //Power + Sigfox + Core R2 + Cover
@@ -140,7 +140,7 @@ module BCE102r2 (value) { //Mini Battery + Sigfox + Core R2 + Mini Cover
 }
 module BCE103r2 (value) { //Mini Battery + 1-Wire + Core R2 + Mini Cove
     width= 33.1; 
-    height= 45.5;
+    height= 44.4;
     holder_diff = 1.25;
     holder_pos = 13;   
 
@@ -159,7 +159,7 @@ module BCE103r2 (value) { //Mini Battery + 1-Wire + Core R2 + Mini Cove
 }
 module BCE104r2 (value) { //Mini Battery + Sigfox + 1-Wire + Core R2 + Mini Cover
     width= 33.1; 
-    height= 56.9;
+    height= 57.1;
     holder_diff = 1.25;
     holder_pos = 13;   
 
@@ -268,7 +268,7 @@ module BCE109r2 (value) { //Mini Battery + Sigfox + Relay + Core R2 + Mini Cover
 
 module BCE201r2 (value) { //Battery + CO2 + Core R2+ Cover
     width= 88.15; 
-    height= 51.1;
+    height= 50.4;
     holder_diff = PCB_height+0.25;
     holder_pos = 11.6;
 
@@ -288,7 +288,7 @@ module BCE201r2 (value) { //Battery + CO2 + Core R2+ Cover
 
 module BCE202r2 (value) { //Battery + CO2 + Sigfox + Core R2 + Cover
     width= 88.15; 
-    height= 63.6;
+    height= 62.8;
     holder_diff = PCB_height+0.25;
     holder_pos = 11.6;
 
