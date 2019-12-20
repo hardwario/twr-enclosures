@@ -2,7 +2,7 @@ use <MCAD/boxes.scad>;
 use <MCAD/triangles.scad>;
  
  
-//parameter: "A" = part A; "B" = part B; "ALL" all box 
+//parameter: "A" = part A; "B" = part B; "C" = cover; "ALL" all box 
 
 //BCE101r2("B"); //Mini Battery + Core R2 + Mini Cover
 //BCE102r2("B"); //Mini Battery + Sigfox + Core R2 + Mini Cover
@@ -12,13 +12,24 @@ use <MCAD/triangles.scad>;
 //BCE106r2("B"); //Mini Battery + Sigfox + Sensor R1.1 + Core R2+ Cover
 //BCE108r2("B"); //Mini Battery + Relay + Core R2 + Mini Cover
 //BCE109r2("B"); //Mini Battery + Sigfox + Relay + Core R2 + Mini Cover
+//BCE121r2 ("B"); //1-Wire + Cover
 //BCE201r2("B"); //Battery + CO2 + Core R2+ Cover
 //BCE202r2("B"); //Battery + CO2 + Sigfox + Core R2 + Cover
+//BCE203r2("B"); //Battery + CO2 + Core R2+ LCD (Tags ouside)
+//BCE204r2("B"); //Battery + CO2 + Core R2+ LCD (Tags inside)
 //BCE205r2("B"); //Battery + Core R2 + Cover
-//BCE210r2("B"); //Battery + Split Core R2 & Split + LCD & GPS (or PIR & Climate) & No Tag
+//BCE206r2("B"); //Battery + CO2 + Sigfox + Core R2 + LCD (Tags inside)
+//BCE208r2 ("A"); //Battery + Core R2 + Split + LCD & PIR (or LCD & Climate) & 2x Tag (intside)
+//BCE209r2 ("A"); //Battery + Core R2 + Compact Split + LCD & Climate
+//BCE210r2("C"); //Battery + Split Core R2 & Split + LCD & GPS (or PIR & Climate) & No Tag
 //BCE301r2("B"); //Power + Core R2 + Cover
+//BCE302r2 ("ALL"); //Power + Core R2 + Encoder
+//BCE303r2 ("ALL"); //Power + Core R2 + Encoder + LCD
+//BCE302r2 ("ALL"); //Power + Core R2 + Encoder
 //BCE304r2("B"); //Power + Sigfox + Core R2 + Cover
 //BCE305r2("B"); //Power + Sigfox + CO2 + Core R2 + Cover
+//BCE501 ("A"); //Mini Battery + Sensor + Core + Flood Detector
+//BCE502 ("A"); //Mini Battery + Sensor + Core + Sigfox + Flood Detector
  
  
 wall=2.0;   // Wall Thickness
@@ -59,15 +70,20 @@ r_wifi_antenna = 4.8;
  
 PCB_height=1.1;
 fatPCB_height=1.6;
-MiniPCB_width=33;
- 
+MiniPCB_width=33; 
 PCB_width=88;
+PCB_radius=3.8; 
  
 USBmicro_height=5.7;  
 USBmicro_width=12;
 USBmicro_length=wall/2;
 USBmicro_hole=3.5;
 USBmicro_hole_span=8.2;
+
+flood_detector_width=10.8;
+flood_detector_length=20.7;
+flood_detector_contact_width=2;
+flood_detector_contact_length=5.5;
   
 terminal185mm_height=7.6;
 terminal185mm_width=19;
@@ -99,8 +115,6 @@ key_height_wall=1.6;
 key_x_roof=8.2;
 key_y_roof=wall;
 key_height_roof=0.35;
-
-
 
 
 module BCE101r2 (value) { //Mini Battery + Core R2 + Mini Cover
@@ -267,9 +281,28 @@ module BCE109r2 (value) { //Mini Battery + Sigfox + Relay + Core R2 + Mini Cover
         }
 }
 
+module BCE121r2 (value) { //1-Wire + Cover
+    width= 33.1; 
+    height= 27.9;
+    holder_diff = 1.85;
+    holder_pos = 13;   
+
+        difference() {
+            translate([0,0,height/2+wall/2]) {
+                hollowbox(width, height, holder_diff, value); 
+                holder(width, height, holder_diff, holder_pos, value);
+                }
+            translate([0,0, 12.5+holder_h+fatPCB_height]) color ([0, 0, 1])
+                MiniSensorModuleR10();
+            translate([0, 9, 0])
+                mountingHoles1xx();            
+        }
+
+}
+
 module BCE201r2 (value) { //Battery + CO2 + Core R2+ Cover
     width= 88.15; 
-    height= 50.4;
+    height= 50.9;
     holder_diff = PCB_height+0.25;
     holder_pos = 11.6;
 
@@ -279,7 +312,7 @@ module BCE201r2 (value) { //Battery + CO2 + Core R2+ Cover
                 holder(width, height, holder_diff, holder_pos, value);
                 }
 
-            translate([0,0, 37.3])
+            translate([0,0, 37.8])
                 MiniCore2R21();
             translate([23, -8, 0]) mountingHoles3xx(); 
        
@@ -289,7 +322,7 @@ module BCE201r2 (value) { //Battery + CO2 + Core R2+ Cover
 
 module BCE202r2 (value) { //Battery + CO2 + Sigfox + Core R2 + Cover
     width= 88.15; 
-    height= 62.8;
+    height= 63.3;
     holder_diff = PCB_height+0.25;
     holder_pos = 11.6;
 
@@ -298,15 +331,75 @@ module BCE202r2 (value) { //Battery + CO2 + Sigfox + Core R2 + Cover
                 hollowbox(width, height, holder_diff, value); 
                 holder(width, height, holder_diff, holder_pos, value);
                 }
-            translate([0,0, 49.8])
+            translate([0,0, 50.3])
                 MiniCore2R21();
-            translate([0,0, 37.3])
+            translate([0,0, 37.8])
                 MiniSigfoxR21();
             translate([23, -8, 0]) mountingHoles3xx(); 
        
         } 
   
 }
+
+
+module BCE203r2 (value) { //Battery + CO2 + Core R2+ LCD (Tags outside)
+    width= 88.15; 
+    height= 34.4; 
+    holder_diff = PCB_height+0.25;
+    holder_pos = 11.6;
+    cover_height=16.4;
+    
+    if (value=="A" || value=="B" || value=="ALL") {
+        difference() {
+                translate([0,0,height/2+wall/2]) {
+                    hollowbox(width, height, holder_diff, value); 
+                    holder(width, height, holder_diff, holder_pos, value);
+                    if (value=="B" || value=="ALL") translate([-22/2 , -length/2-wall, height-cover_height]) cube ([22, wall, cover_height-5.1]);
+                    if (value=="A" || value=="ALL")translate([-22/2 , length/2, height-cover_height]) cube ([22, wall, cover_height-5.1]); 
+                    }
+                    
+                translate([0 ,0, 37.8])
+                    MiniCore2R21();    
+                translate([23, -8, 0]) mountingHoles3xx(); 
+           
+            }
+        }
+    if (value=="C" || value=="ALL") {
+
+        translate ([0, 0, height+fatPCB_height+1.2]) { //comment
+         part_C ("3tags_vent"); 
+        } //comment
+    }
+        
+}
+
+module BCE204r2 (value) { //Battery + CO2 + Core R2+ LCD (Tags inside)
+    width= 88.15; 
+    height= 46.8;
+    holder_diff = PCB_height+0.25;
+    holder_pos = 11.6;
+    
+    if (value=="A" || value=="B" || value=="ALL") {
+        difference() {
+                translate([0,0,height/2+wall/2]) {
+                    hollowbox(width, height, holder_diff, value); 
+                    holder(width, height, holder_diff, holder_pos, value);
+                    }
+                    
+                translate([0 ,0, 37.8])
+                    MiniCore2R21();    
+                translate([23, -8, 0]) mountingHoles3xx(); 
+           
+            }
+        }
+    if (value=="C" || value=="ALL") {
+        translate ([0, 0, height+fatPCB_height+1.2]) { //comment
+            part_C ("2vents"); 
+        } //comment
+    }
+        
+}
+
 module BCE205r2 (value) { //Battery +  Core R2  + Cover //BCE303
     width= 88.15; 
     height= 39;
@@ -327,30 +420,121 @@ module BCE205r2 (value) { //Battery +  Core R2  + Cover //BCE303
   
 }
 
-module BCE210r2 (value) { //Battery + Split Core R2 & Split + LCD & GPS (or PIR & Climate) & No Tag
+module BCE206r2 (value) { //Battery + CO2 + Sigfox + Core R2 + LCD (Tags inside)
     width= 88.15; 
-    height= 50.9;
+    height= 58.9;
     holder_diff = PCB_height+0.25;
     holder_pos = 11.6;
 
-    difference() {
-            translate([0,0,height/2+wall/2]) {
-                hollowbox(width, height, holder_diff, value); 
-                holder(width, height, holder_diff, holder_pos, value);
-                }
-            //translate([0,0, 49.8])
-               // MiniCore2R21();
-                
-            translate([-(88.15/2)+(MiniPCB_width/2) ,0, 37.7])
-                MiniCore2R21();    
-            translate([(88.15/2)-(MiniPCB_width/2) ,0, 37.5])
-                MiniSigfoxR21();   
-            translate([23, -8, 0]) mountingHoles3xx(); 
-       
-        } 
-
+     if (value=="A" || value=="B" || value=="ALL") {
+        difference() {
+                translate([0,0,height/2+wall/2]) {
+                    hollowbox(width, height, holder_diff, value); 
+                    holder(width, height, holder_diff, holder_pos, value);
+                    }
+                translate([0,0, 50.3])
+                    MiniCore2R21();
+                translate([0,0, 37.8])
+                    MiniSigfoxR21();
+                translate([23, -8, 0]) mountingHoles3xx(); 
+           
+            } 
+        }
+      if (value=="C" || value=="ALL") {
+            translate ([0, 0, height+fatPCB_height+1.2]) { //comment
+                part_C ("2vents"); 
+            } //comment
+        }
+  
 }
 
+module BCE208r2 (value) { //Battery + Core R2 + Split + LCD & PIR (or LCD & Climate) & 2x Tag (outside)
+    width= 88.15; 
+    height= 46.8;
+    holder_diff = PCB_height+0.25;
+    holder_pos = 11.6;
+    vents_length = 21;
+    cover_height=4; 
+    
+    if (value=="A" || value=="B" || value=="ALL") {
+        difference() {
+                translate([0,0,height/2+wall/2]) {
+                    hollowbox(width, height, holder_diff, value); 
+                    holder(width, height, holder_diff, holder_pos, value);
+                    }
+                    
+                translate([0,0, 26.2])
+                    MiniCore2R21();    
+                translate([23, -8, 0]) mountingHoles3xx(); 
+           
+            }
+        }
+    if (value=="C" || value=="ALL") {
+        translate ([0, 0, height+fatPCB_height+1.2]) { //comment
+            part_C ("2miniPCB_2tags"); 
+        } //comment
+    }
+        
+}
+
+module BCE209r2 (value) { //Battery + Core R2 + Compact Split + LCD & Climate
+    width= 88.15; 
+    height= 39.4;
+    holder_diff = PCB_height+0.25;
+    holder_pos = 11.6;
+    vents_length = 21;
+    cover_height=4; 
+    
+    if (value=="A" || value=="B" || value=="ALL") {
+        difference() {
+                translate([0,0,height/2+wall/2]) {
+                    hollowbox(width, height, holder_diff, value); 
+                    holder(width, height, holder_diff, holder_pos, value);
+                    }
+                    
+                translate([0,0, 26.2])
+                    MiniCore2R21();    
+                translate([23, -8, 0]) mountingHoles3xx(); 
+           
+            }
+        }
+    if (value=="C" || value=="ALL") {
+        translate ([0, 0, height+fatPCB_height+1.2]) { //comment
+            part_C ("2miniPCB"); 
+        } //comment
+    }
+        
+}
+
+module BCE210r2 (value) { //Battery + Split Core R2 & Split + LCD & GPS (or PIR & Climate) & No Tag
+    width= 88.15; 
+    height= 46.8;
+    holder_diff = PCB_height+0.25;
+    holder_pos = 11.6;
+    vents_length = 10;
+    cover_height=4; 
+    
+    if (value=="A" || value=="B" || value=="ALL") {
+        difference() {
+                translate([0,0,height/2+wall/2]) {
+                    hollowbox(width, height, holder_diff, value); 
+                    holder(width, height, holder_diff, holder_pos, value);
+                    }
+                    
+                translate([-(88.15/2)+(MiniPCB_width/2) ,0, 37.7])
+                    MiniCore2R21();    
+                translate([(88.15/2)-(MiniPCB_width/2) ,0, 37.4])
+                    MiniSigfoxR21();   
+                translate([23, -8, 0]) mountingHoles3xx(); 
+           
+            }
+        }
+    if (value=="C" || value=="ALL") {
+        translate ([0, 0, height+fatPCB_height+1.2]) part_C ("2miniPCB_vent"); 
+    } 
+        
+}
+ 
 
 
 module BCE301r2 (value) { //Power + Core R2 + Cover
@@ -374,6 +558,69 @@ module BCE301r2 (value) { //Power + Core R2 + Cover
         } 
   
 }
+
+module BCE302r2 (value) { //Power + Core R2 + Encoder
+    width= 88.15; 
+    height= 50.6-3.5-1;
+    holder_diff = 1.85;
+    holder_pos = 10.6;
+
+
+    if (value=="A" || value=="B" || value=="ALL") {
+        difference() {
+                translate([0,0,height/2+wall/2]) {
+                    hollowbox(width, height, holder_diff, value); 
+                    holder(width, height, holder_diff, holder_pos, value);
+                    }
+        
+                translate([0,0, 24.7])
+                    MiniCore2R21();
+                translate([0,0, 12])
+                    Power();
+                translate([23, -8, 0]) mountingHoles3xx(); 
+           
+            } 
+        }
+    if (value=="C" || value=="ALL") {
+        translate ([0, 0, height+fatPCB_height+1.2]) { //comment
+            part_C ("encoder"); 
+        } //comment
+    }
+
+  
+}
+
+module BCE303r2 (value) { //Power + Core R2 + Encoder + LCD
+    width= 88.15; 
+    height= 50.6-3.5-1;
+    holder_diff = 1.85;
+    holder_pos = 10.6;
+
+
+    if (value=="A" || value=="B" || value=="ALL") {
+        difference() {
+                translate([0,0,height/2+wall/2]) {
+                    hollowbox(width, height, holder_diff, value); 
+                    holder(width, height, holder_diff, holder_pos, value);
+                    }
+        
+                translate([0,0, 24.7])
+                    MiniCore2R21();
+                translate([0,0, 12])
+                    Power();
+                translate([23, -8, 0]) mountingHoles3xx(); 
+           
+            } 
+        }
+    if (value=="C" || value=="ALL") {
+        translate ([0, 0, height+fatPCB_height+1.2]) { //comment
+            part_C ("encoder_LCD"); 
+        } //comment
+    }
+
+  
+}
+
 module BCE304r2 (value) { //Power + Sigfox + Core R2 + Cover
     width= 88.15; 
     height= 50.6;
@@ -391,13 +638,15 @@ module BCE304r2 (value) { //Power + Sigfox + Core R2 + Cover
             translate([0,0, 24.9])
                 MiniSigfoxR21();
             translate([0,0, 12])
-                Power();        
+                Power();   
+            translate([23, -8, 0]) 
+                mountingHoles3xx();      
     
         }
     }   
 module BCE305r2 (value) { //Power + Sigfox + CO2 + Core R2 + Cover
     width= 88.15;  
-    height= 62.6;
+    height= 62.4;
     holder_diff = 1.85;
     holder_pos = 10.6; 
     
@@ -408,13 +657,114 @@ module BCE305r2 (value) { //Power + Sigfox + CO2 + Core R2 + Cover
                 holder(width, height, holder_diff, holder_pos, value);
                 }
       
-            translate([0,0, 49])
+            translate([0,0, 49.5])
                 MiniCore2R21();
-            translate([0,0, 24.9])
+            translate([0,0, 25.4])
                 MiniSigfoxR21();
             translate([0,0, 12])
-                Power();                       
+                Power();
+            translate([23, -8, 0]) 
+                mountingHoles3xx();                 
     }
+}
+
+
+module BCE501 (value) { //Mini Battery + Sensor + Core + Flood Detector
+    width= 38;
+    rim1=3.7;
+    rim2=1.9; 
+    
+    if (value=="A") {
+        translate ([0, 0, rim1+rim2+wall]) rotate ([0, 180, 0]) box_flood_detector_partA(width, rim1, rim2); 
+        }
+    if (value=="B") {
+        
+        difference () {
+            box_flood_detector_partB(width);
+            translate ([0, 0, length-rim1]) box_flood_detector_partA(width, rim1, rim2); 
+            }
+        }     
+    if (value=="ALL") {
+         translate ([0, 0, length-rim1]) box_flood_detector_partA(width, rim1, rim2);
+         box_flood_detector_partB(width);
+        }
+
+
+} 
+
+module BCE502 (value) { //Mini Battery + Sensor + Core + Flood Detector
+    width= 50.8;
+    rim1=3.7;
+    rim2=1.9; 
+    
+    if (value=="A") {
+        translate ([0, 0, rim1+rim2+wall]) rotate ([0, 180, 0]) box_flood_detector_partA(width, rim1, rim2); 
+        }
+    if (value=="B") {
+        
+        difference () {
+            box_flood_detector_partB(width);
+            translate ([0, 0, length-rim1]) box_flood_detector_partA(width, rim1, rim2); 
+            }
+        }     
+    if (value=="ALL") {
+         translate ([0, 0, length-rim1]) box_flood_detector_partA(width, rim1, rim2);
+         box_flood_detector_partB(width);
+        }
+
+
+} 
+ 
+
+module box_flood_detector_partA (width, rim1, rim2) {
+     
+    difference () {
+        translate ([0, 0, (rim1)/2]) roundedBox([width+2*wall, MiniPCB_width+3*wall+flood_detector_width, rim1], radius+wall, sidesonly=sidesonly);
+        translate ([0, 0, (rim1)/2]) roundedBox([width+wall, MiniPCB_width+wall+flood_detector_width+wall, rim1], radius+wall/2, sidesonly=sidesonly);
+    }
+    
+    difference () {
+            translate ([0, 0, (rim2)/2+rim1]) roundedBox([width+2*wall, MiniPCB_width+3*wall+flood_detector_width, rim2], radius+wall, sidesonly=sidesonly);
+            translate ([0, 0, (rim2)/2+rim1]) roundedBox([width, MiniPCB_width+flood_detector_width+wall, rim2], radius, sidesonly=sidesonly);
+    }
+    
+    translate ([0, 0, +rim1+rim2+(wall)/2]) roundedBox([width+2*wall, MiniPCB_width+3*wall+flood_detector_width, wall], radius+wall, sidesonly=sidesonly);
+    }
+
+module box_flood_detector_partB (width) {
+    stair = 7.58; 
+    translate([0,0,length/2]) {
+        difference () {
+            roundedBox([width+2*wall, MiniPCB_width+3*wall+flood_detector_width, length], radius+wall, sidesonly=sidesonly);
+            roundedBox([width, MiniPCB_width+flood_detector_width+wall, length], radius, sidesonly=sidesonly);      
+            }  
+    }
+     
+    translate ([0, 0, (-stair-wall)/2]) {
+       difference () {
+            roundedBox([width+2*wall, MiniPCB_width+3*wall+flood_detector_width, stair+wall], radius+wall, sidesonly=sidesonly);
+            translate ([0, 0, wall/2]) roundedBox([width, MiniPCB_width+flood_detector_width+wall, stair], radius, sidesonly=sidesonly);
+            translate ([-(width+2*wall)/2, (MiniPCB_width+3*wall+flood_detector_width)/2-(flood_detector_width+2*wall), (-stair-wall)/2]) cube ([width+2*wall, flood_detector_width+2*wall, stair+wall]);
+            }
+    } 
+
+    difference () {
+            translate ([0, 0, wall/2]) roundedBox([width+2*wall, MiniPCB_width+3*wall+flood_detector_width, wall], radius+wall, sidesonly=sidesonly);
+            difference () {
+                translate ([0, 0, wall/2]) roundedBox([width, MiniPCB_width+flood_detector_width+wall, wall], radius, sidesonly=sidesonly);
+                translate ([-(width+2*wall)/2, (MiniPCB_width+3*wall+flood_detector_width)/2-(flood_detector_width+2*wall), 0]) cube ([width+2*wall, flood_detector_width+2*wall, stair+wall]);
+            }
+            translate ([2.3, (MiniPCB_width+3*wall+flood_detector_width)/2-flood_detector_contact_width-2.12-wall, 0]) cube ([flood_detector_contact_length, flood_detector_contact_width, wall]);
+            translate ([-flood_detector_contact_length-2.3, (MiniPCB_width+3*wall+flood_detector_width)/2-flood_detector_contact_width-2.12-wall, 0]) cube ([flood_detector_contact_length, flood_detector_contact_width, wall]);
+            }
+
+    translate ([-(width+2*wall)/2, (MiniPCB_width+3*wall+flood_detector_width)/2-(flood_detector_width+2*wall), -stair-wall]) cube ([width+2*wall, wall, length+stair+wall]);
+            
+    translate ([-(width+2*wall)/2, (MiniPCB_width+3*wall+flood_detector_width)/2-2*wall-flood_detector_width-6, -stair-wall]) cube ([width+2*wall, wall, stair+wall]);
+    translate ([-(width+2*wall)/2, -(MiniPCB_width+3*wall+flood_detector_width)/2+6, -stair-wall])  cube ([width+2*wall, wall, stair+wall]);
+       
+    translate ([-wall-flood_detector_length/2, (MiniPCB_width+wall-flood_detector_width)/2, 0]) cube ([wall, flood_detector_width, length]);
+    translate ([+flood_detector_length/2, (MiniPCB_width+wall-flood_detector_width)/2, 0]) cube ([wall, flood_detector_width, length]);
 }
 
 module screwHole() { 
@@ -739,48 +1089,35 @@ module MiniUSB () {
 }
    
 module MiniPCB () {
-    difference () {
-        cube ([MiniPCB_width, length, PCB_height], center=true);
-        translate ([MiniPCB_width/2, length/2, -PCB_height/2]) TRC ();
-        translate ([-MiniPCB_width/2, length/2, -PCB_height/2]) TLC ();
-        translate ([-MiniPCB_width/2, -length/2, -PCB_height/2]) BLC ();
-        translate ([MiniPCB_width/2, -length/2, -PCB_height/2]) BRC ();
-    }
-        
+    d_holder=2.9;
+    x_holder=1.9; 
+    y_holder=1.5;
+    PCB_holder=7;
+    
+       
+        roundedBox([MiniPCB_width , length, PCB_height], PCB_radius, sidesonly=sidesonly);    
+
 }
-   
+
 module fatMiniPCB () {
-    difference () {
-        cube ([MiniPCB_width, length, fatPCB_height], center=true);
-        translate ([MiniPCB_width/2, length/2, -fatPCB_height/2]) TRC ();
-        translate ([-MiniPCB_width/2, length/2, -fatPCB_height/2]) TLC ();
-        translate ([-MiniPCB_width/2, -length/2, -fatPCB_height/2]) BLC ();
-        translate ([MiniPCB_width/2, -length/2, -fatPCB_height/2]) BRC ();
-    }
+    d_holder=2.9;
+    x_holder=1.9; 
+    y_holder=1.5;
+    PCB_holder=7;
+    
+    
+        roundedBox([MiniPCB_width , length, fatPCB_height], PCB_radius, sidesonly=sidesonly);
+
 }
- 
+
 module PCB () {
-    difference () {
-        cube ([PCB_width, length, PCB_height], center=true);
-        translate ([PCB_width/2, length/2, -PCB_height/2]) TRC ();
-        translate ([-PCB_width/2, length/2, -PCB_height/2]) TLC ();
-        translate ([-PCB_width/2, -length/2, -PCB_height/2]) BLC ();
-        translate ([PCB_width/2, -length/2, -PCB_height/2]) BRC ();
-    }
-          
+    roundedBox([PCB_width , length, PCB_height], PCB_radius, sidesonly=sidesonly);     
 }
      
 module fatPCB () {
-    difference () {
-        cube ([PCB_width, length, fatPCB_height], center=true);
-        translate ([PCB_width/2, length/2, -fatPCB_height/2]) TRC ();
-        translate ([-PCB_width/2, length/2, -fatPCB_height/2]) TLC ();
-        translate ([-PCB_width/2, -length/2, -fatPCB_height/2]) BLC ();
-        translate ([PCB_width/2, -length/2, -fatPCB_height/2]) BRC ();
-        }
-        
+    roundedBox([PCB_width , length, fatPCB_height], PCB_radius, sidesonly=sidesonly);   
 }
- 
+
 module MiniCore2R21 () {
     translate ([0,0,fatPCB_height/2])
     fatMiniPCB ();
@@ -816,7 +1153,7 @@ module MiniRelay () {
 module terminal17mm(){ //3pin
    
     translate ([0, 0, terminal17mm_bottom_recess])
-    cube([terminal17mm_width, wall, terminal17mm_height]); //díra na konektor
+    cube([terminal17mm_width, wall+0.1, terminal17mm_height]); //díra na konektor
      
     translate([0,0, terminal17mm_bottom_recess+terminal17mm_height])
     cube([terminal17mm_width, wall/2, terminal17mm_upper_recess]); //horní zahloubení
@@ -838,9 +1175,9 @@ module terminal15mm(){ //3pin
         translate([0, 0, 0]) cube([terminal15mm_width, wall/2, terminal15mm_bottom_recess]); //dolni zahloubení 
 } 
 module key () {
-    translate([0, 0, 0]) cube([key_width_wall, key_length_wall, key_height_wall]); //left
-    translate([key_x_roof-key_width_wall, 0, 0]) cube([key_width_wall, key_length_wall, key_height_wall]);// pravy
-    translate([0, 0, key_height_wall]) cube([key_x_roof, key_y_roof, key_height_roof]); // right
+    translate([0, 0, 0]) cube([key_width_wall, key_length_wall+0.1, key_height_wall]); //left
+    translate([key_x_roof-key_width_wall, 0, 0]) cube([key_width_wall, key_length_wall+0.1, key_height_wall]);// pravy
+    translate([0, 0, key_height_wall]) cube([key_x_roof, key_y_roof+0.1, key_height_roof]); // right
     }
  
 module terminal12_3mm () { //3pin   
@@ -864,44 +1201,197 @@ module Power () {
    
     }
  
- 
-module TRC() { 
-    translate ([-9, -9, 0])union () {
-     difference () {
-        cube ([9, 9, fatPCB_height]);
-        translate ([4.5, 4.5, 0]) cylinder (h=fatPCB_height, r=4.5, center=false);
-         cube ([4.5, 9, fatPCB_height]);
-         cube ([9, 4.5, fatPCB_height]);
-     }       
-    }
-}
-module TLC() { 
-     translate ([0, -9, 0])union () { 
-      difference () {
-        cube ([9, 9, fatPCB_height]);
-        translate ([4.5, 4.5, 0]) cylinder (h=fatPCB_height, r=4.5, center=false);
-         translate ([4.5, 0, 0])cube ([4.5, 9, fatPCB_height]);
-         cube ([9, 4.5, fatPCB_height]);
-     }
-     }
+module cover_miniPCB (cover_height) {
+    corner_radius=1.5;
+    d_holder=2.9;
+    x_holder=1.9; 
+    y_holder=1.5;
+    PCB_holder=7;
+     
+     
     
-}
-module BRC() { 
-    translate ([-9, 0, 0])union () {
-     difference () {
-        cube ([9, 9, fatPCB_height]);
-        translate ([4.5, 4.5, 0]) cylinder (h=fatPCB_height, r=4.5, center=false);
-         cube ([4.5, 9, fatPCB_height]);
-         translate ([0, 4.5, 0]) cube ([9, 4.5, fatPCB_height]);
-     }       
-    }
-}
-module BLC() { 
     difference () {
-        cube ([9, 9, fatPCB_height]);
-        translate ([4.5, 4.5, 0]) cylinder (h=fatPCB_height, r=4.5, center=false);
-        translate ([4.5, 0, 0]) cube ([4.5, 9, fatPCB_height]);
-        translate ([0, 4.5, 0]) cube ([9, 4.5, fatPCB_height]);
-           
+        translate ([0, 0, cover_height/2-fatPCB_height-0.4]) roundedBox([MiniPCB_width+2*wall, length+2*wall, cover_height], radius+wall, sidesonly=sidesonly);
+        
+        translate ([0, 0, cover_height/2-fatPCB_height-0.4]) roundedBox([MiniPCB_width , length, cover_height], PCB_radius, sidesonly=sidesonly);  
+        
+        }
+    difference () {
+       translate ([0, 0, -1.5]) roundedBox([MiniPCB_width , length, 1], PCB_radius, sidesonly=sidesonly);  
+        
+        translate ([0, 0, -1.5]) cube ([MiniPCB_width-2*PCB_holder, length, 1], center=true);
+        translate ([0, 0, -1.5]) cube ([MiniPCB_width, length-2*PCB_holder, 1], center=true);
+        translate ([-MiniPCB_width/2+PCB_holder-corner_radius, -length/2+PCB_holder-corner_radius, -2]) corner_miniPCB_hole (corner_radius);  
+        translate ([+MiniPCB_width/2-PCB_holder+corner_radius, -length/2+PCB_holder-corner_radius, -2]) rotate ([0, 0, 90]) corner_miniPCB_hole (corner_radius);
+        translate ([+MiniPCB_width/2-PCB_holder+corner_radius, +length/2-PCB_holder+corner_radius, -2]) rotate ([0, 0, 180]) corner_miniPCB_hole (corner_radius); 
+        translate ([-MiniPCB_width/2+PCB_holder-corner_radius, +length/2-PCB_holder+corner_radius, -2]) rotate ([0, 0, 270]) corner_miniPCB_hole (corner_radius);
+        }
+    
+    /*translate ([MiniPCB_width/2-PCB_holder+x_holder+d_holder/2, length/2-PCB_holder+y_holder+d_holder/2, -2+1]) cylinder (h=fatPCB_height, d=d_holder);
+    translate ([-MiniPCB_width/2+PCB_holder-x_holder-d_holder/2, length/2-PCB_holder+y_holder+d_holder/2, -2+1]) cylinder (h=fatPCB_height, d=d_holder);
+    translate ([-MiniPCB_width/2+PCB_holder-x_holder-d_holder/2, -length/2+PCB_holder-y_holder-d_holder/2, -2+1]) cylinder (h=fatPCB_height, d=d_holder);
+    translate ([MiniPCB_width/2-PCB_holder+x_holder+d_holder/2, -length/2+PCB_holder-y_holder-d_holder/2, -2+1]) cylinder (h=fatPCB_height, d=d_holder);*/
     }
-}
+
+
+module corner_miniPCB_hole (corner_radius) {
+    difference () {
+        cube ([corner_radius, corner_radius, 1]);
+        cylinder (h=1, r=corner_radius);
+        }
+    
+    }
+module cover_vents (x) {
+    for (y=[-length/2+wall:2+2:+length/2])
+        translate ([0 , y, -0.8]) {
+            hull () {
+                cylinder (h=fatPCB_height, d=2);
+                translate ([x, 0, 0]) cylinder (h=fatPCB_height, d=2);
+            }
+        } 
+    
+    }
+    
+module cover_tag () {
+    
+    translate ([8.2, 16.5/2, PCB_height/2]) roundedBox([16.5, 16.5, PCB_height], radius, sidesonly=sidesonly);
+    cube ([12.2, 16.5, PCB_height]);
+    translate ([0, 0, -fatPCB_height]) cube ([3.2, 16.5, fatPCB_height]);
+    
+    }
+    
+module part_C (value) {
+    width= 88.15; 
+    height= 34.4; 
+    vents_length = 21;
+    tag = 16.5; 
+    
+    if (value == "3tags_vent") {
+        cover_height=16.4;
+        vents_length = 21;
+                    difference () {
+                roundedBox([width+2*wall, length+2*wall, fatPCB_height], radius+wall, sidesonly=sidesonly); 
+                    
+                translate ([0, 0, 0]) roundedBox([MiniPCB_width+2*wall, length+2*wall, 4], radius+wall, sidesonly=sidesonly);
+                
+                translate ([-width/2+wall, 0, 0]) cover_vents (vents_length);
+                
+                translate ([+width/2-vents_length-wall+6.2, -length/2+1.77, +fatPCB_height/2-PCB_height]) cover_tag ();
+                translate ([+width/2-vents_length-wall+6.2, -length/2+1.77+tag+1.6, +fatPCB_height/2-PCB_height]) cover_tag ();
+                
+                translate ([+width/2-vents_length-wall+6.2, -length/2+1.77+2*tag+2*1.6-0.5, +fatPCB_height/2-PCB_height]) cover_tag ();
+                        
+            
+            }
+             
+            difference () {
+                 translate ([0, 0, 1.2]) cover_miniPCB (cover_height);
+                 translate([-22/2 , -length/2-wall, -height-2*fatPCB_height-1.2+37.8]) cube ([22, wall, cover_height-5]);
+                 translate([-22/2 , length/2, -height-2*fatPCB_height-1.2+37.8]) cube ([22, wall, cover_height-5]); 
+                 }
+          }
+    if (value == "2vents") {
+            vents_length = 21;
+            cover_height=4; 
+            difference () {
+             
+                roundedBox([width+2*wall, length+2*wall, fatPCB_height], radius+wall, sidesonly=sidesonly);    
+                translate ([0, 0, 0]) roundedBox([MiniPCB_width+2*wall, length+2*wall, 4], radius+wall, sidesonly=sidesonly);
+                translate ([-width/2+wall, 0, 0]) cover_vents (vents_length);
+                translate ([+width/2-vents_length-wall, 0, 0]) cover_vents (vents_length); 
+                        
+            
+            }
+            translate ([0, 0, 1.2]) cover_miniPCB (cover_height); 
+        }
+    if (value == "2miniPCB_vent") {
+       cover_height=4;    
+        difference () {
+             
+                roundedBox([width+2*wall, length+2*wall, fatPCB_height], radius+wall, sidesonly=sidesonly);    
+                translate ([-(width+2*wall)/2+(MiniPCB_width+2*wall)/2, 0, 0]) roundedBox([MiniPCB_width+2*wall, length+2*wall, 4], radius+wall, sidesonly=sidesonly);
+                translate ([+(width+2*wall)/2-(MiniPCB_width+2*wall)/2, 0, 0]) roundedBox([MiniPCB_width+2*wall, length+2*wall, 4], radius+wall, sidesonly=sidesonly);
+                translate ([-vents_length/2, 0, 0]) cover_vents (vents_length); 
+                        
+            
+            }
+            translate ([-(width+2*wall)/2+(MiniPCB_width+2*wall)/2, 0, 1.2]) cover_miniPCB (cover_height); 
+            translate ([+(width+2*wall)/2-(MiniPCB_width+2*wall)/2, 0, 1.2]) cover_miniPCB (cover_height);         
+        }
+    if (value == "2miniPCB_2tags") {
+       vents_length = 21;
+       cover_height=4;
+     
+        difference () {
+             
+                roundedBox([width+2*wall, length+2*wall, fatPCB_height], radius+wall, sidesonly=sidesonly);    
+                translate ([-(width+2*wall)/2+(MiniPCB_width+2*wall)/2, 0, 0]) roundedBox([MiniPCB_width+2*wall, length+2*wall, 4], radius+wall, sidesonly=sidesonly);
+                translate ([+(width+2*wall)/2-(MiniPCB_width+2*wall)/2, 0, 0]) roundedBox([MiniPCB_width+2*wall, length+2*wall, 4], radius+wall, sidesonly=sidesonly);
+                translate ([-width/2+MiniPCB_width+wall+1.6, -length/2+8, 0]) cover_tag ();
+                translate ([-width/2+MiniPCB_width+wall+1.6, length/2-tag-8, 0]) cover_tag ();
+                        
+            
+            }
+            translate ([-(width+2*wall)/2+(MiniPCB_width+2*wall)/2, 0, 1.2]) cover_miniPCB (cover_height); 
+            translate ([+(width+2*wall)/2-(MiniPCB_width+2*wall)/2, 0, 1.2]) cover_miniPCB (cover_height);         
+        }
+     
+    if (value == "2miniPCB") {
+       vents_length = 21;
+       cover_height=4;
+     
+        difference () {
+             
+                roundedBox([width+2*wall, length+2*wall, fatPCB_height], radius+wall, sidesonly=sidesonly);    
+                translate ([-(MiniPCB_width)/2-1.5, 0, 0]) roundedBox([MiniPCB_width+2*wall, length+2*wall, 4], radius+wall, sidesonly=sidesonly);
+                translate ([+(MiniPCB_width)/2+1.5, 0, 0]) roundedBox([MiniPCB_width+2*wall, length+2*wall, 4], radius+wall, sidesonly=sidesonly);                       
+            }
+            translate ([-(MiniPCB_width)/2-1.5, 0, 1.2]) cover_miniPCB (cover_height); 
+            translate ([+(MiniPCB_width)/2+1.5, 0, 1.2]) cover_miniPCB (cover_height);         
+        }   
+    if (value == "3tags_encoder") {
+            d_encoder=16;
+            cover_height=fatPCB_height+2.3; 
+                    difference () {
+                roundedBox([width+2*wall, length+2*wall, fatPCB_height], radius+wall, sidesonly=sidesonly); 
+                           
+                rotate ([0, 0, 180]) {
+                translate ([+width/2-vents_length-wall+6.2, -length/2+1.77, +fatPCB_height/2-PCB_height]) cover_tag ();
+                translate ([+width/2-vents_length-wall+6.2, -length/2+1.77+tag+1.6, +fatPCB_height/2-PCB_height]) cover_tag ();
+                translate ([+width/2-vents_length-wall+6.2, -length/2+1.77+2*tag+2*1.6-0.5, +fatPCB_height/2-PCB_height]) cover_tag ();
+                }
+                
+                translate ([(width/2-d_encoder/2)-5.6, 0, -fatPCB_height/2]) cylinder (h=fatPCB_height, d=d_encoder);
+                
+                translate ([0, 0, 0]) roundedBox([MiniPCB_width+2*wall, length+2*wall, 4], radius+wall, sidesonly=sidesonly);
+                
+            }
+            translate ([0, 0, 1.2]) cover_miniPCB (cover_height); 
+           
+      }
+   
+    if (value == "encoder") {
+            d_encoder=16;
+            cover_height=fatPCB_height+2.3; 
+            difference () {
+                roundedBox([width+2*wall, length+2*wall, fatPCB_height], radius+wall, sidesonly=sidesonly); 
+                translate ([(width/2-d_encoder/2)-5.6, 0, -fatPCB_height/2]) cylinder (h=fatPCB_height, d=d_encoder);
+                translate ([0, 0, 0]) roundedBox([MiniPCB_width+2*wall, length+2*wall, 4], radius+wall, sidesonly=sidesonly);
+                }
+            translate ([0, 0, 1.2]) cover_miniPCB (cover_height);    
+                
+                
+            }
+    if (value == "encoder_LCD") {
+            d_encoder=16;
+            cover_height=fatPCB_height+2.9; 
+            difference () {
+                roundedBox([width+2*wall, length+2*wall, fatPCB_height], radius+wall, sidesonly=sidesonly); 
+                translate ([(width/2-d_encoder/2)-5.6, 0, -fatPCB_height/2]) cylinder (h=fatPCB_height, d=d_encoder);
+                translate ([0, 0, 0]) roundedBox([MiniPCB_width+2*wall, length+2*wall, 4], radius+wall, sidesonly=sidesonly);
+                }
+            translate ([0, 0, 1.2]) cover_miniPCB (cover_height);    
+                
+                
+            }
+ }
