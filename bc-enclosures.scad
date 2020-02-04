@@ -5,7 +5,7 @@ use <MCAD/triangles.scad>;
 //parameter: "A" = part A; "B" = part B; "C" = cover; "ALL" all box 
 
 //BCE101r2("B"); //Mini Battery + Core R2 + Mini Cover
-//BCE102r2("B"); //Mini Battery + Sigfox + Core R2 + Mini Cover
+//BCE102r2("A"); //Mini Battery + Sigfox + Core R2 + Mini Cover
 //BCE103r2("B"); //Mini Battery + 1-Wire + Core R2 + Mini Cover
 //BCE104r2("B"); //Mini Battery + Sigfox + 1-Wire + Core R2 + Mini Cover
 //BCE105r2("B"); //Mini Battery + Sensor R1.1 + Core R2 + Cover
@@ -14,14 +14,15 @@ use <MCAD/triangles.scad>;
 //BCE109r2("B"); //Mini Battery + Sigfox + Relay + Core R2 + Mini Cover
 //BCE121r2 ("B"); //1-Wire + Cover
 //BCE201r2("B"); //Battery + CO2 + Core R2+ Cover
-//BCE202r2("B"); //Battery + CO2 + Sigfox + Core R2 + Cover
+//BCE202r2("A"); //Battery + CO2 + Sigfox + Core R2 + Cover
 //BCE203r2("B"); //Battery + CO2 + Core R2+ LCD (Tags ouside)
-//BCE204r2("B"); //Battery + CO2 + Core R2+ LCD (Tags inside)
+//BCE204r2("C"); //Battery + CO2 + Core R2+ LCD (Tags inside)
 //BCE205r2("B"); //Battery + Core R2 + Cover
 //BCE206r2("B"); //Battery + CO2 + Sigfox + Core R2 + LCD (Tags inside)
 //BCE208r2 ("A"); //Battery + Core R2 + Split + LCD & PIR (or LCD & Climate) & 2x Tag (intside)
 //BCE209r2 ("A"); //Battery + Core R2 + Compact Split + LCD & Climate
 //BCE210r2("C"); //Battery + Split Core R2 & Split + LCD & GPS (or PIR & Climate) & No Tag
+BCE211r2("C"); //Battery + Sigfox + Core R2+ LCD (Tags inside)
 //BCE301r2("B"); //Power + Core R2 + Cover
 //BCE302r2 ("ALL"); //Power + Core R2 + Encoder
 //BCE303r2 ("ALL"); //Power + Core R2 + Encoder + LCD
@@ -534,6 +535,35 @@ module BCE210r2 (value) { //Battery + Split Core R2 & Split + LCD & GPS (or PIR 
     } 
         
 }
+
+module BCE211r2 (value) { //Battery + CO2 + Core R2+ LCD (Tags inside)
+    width= 88.15; 
+    height= 46.8;
+    holder_diff = PCB_height+0.25;
+    holder_pos = 11.6;
+    
+    if (value=="A" || value=="B" || value=="ALL") {
+        difference() {
+                translate([0,0,height/2+wall/2]) {
+                    hollowbox(width, height, holder_diff, value); 
+                    holder(width, height, holder_diff, holder_pos, value);
+                    }
+                translate([0,0, 25.3])
+                    MiniSigfoxR21();
+                translate([0 ,0, 37.8])
+                    MiniCore2R21();    
+                translate([23, -8, 0]) mountingHoles3xx(); 
+           
+            }
+        }
+    if (value=="C" || value=="ALL") {
+        translate ([0, 0, height+fatPCB_height+1.2]) { //comment
+            part_C ("2vents"); 
+        } //comment
+    }
+        
+}
+
  
 
 
@@ -1142,6 +1172,7 @@ module MiniSigfoxR21 () {
     }
 }
 
+
 module MiniRelay () {
     translate ([0,0,PCB_height/2])
     MiniPCB ();
@@ -1207,13 +1238,13 @@ module cover_miniPCB (cover_height) {
     x_holder=1.9; 
     y_holder=1.5;
     PCB_holder=7;
-     
+    length_tolerance=-0.25; //correction for better fixing
      
     
     difference () {
         translate ([0, 0, cover_height/2-fatPCB_height-0.4]) roundedBox([MiniPCB_width+2*wall, length+2*wall, cover_height], radius+wall, sidesonly=sidesonly);
         
-        translate ([0, 0, cover_height/2-fatPCB_height-0.4]) roundedBox([MiniPCB_width , length, cover_height], PCB_radius, sidesonly=sidesonly);  
+        translate ([0, 0, cover_height/2-fatPCB_height-0.4]) roundedBox([MiniPCB_width , length+length_tolerance, cover_height], PCB_radius, sidesonly=sidesonly);  
         
         }
     difference () {
