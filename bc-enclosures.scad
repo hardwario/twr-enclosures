@@ -12,7 +12,8 @@ use <MCAD/triangles.scad>;
 //BCE106r2("B"); //Mini Battery + Sigfox + Sensor R1.1 + Core R2+ Cover
 //BCE108r2("B"); //Mini Battery + Relay + Core R2 + Mini Cover
 //BCE109r2("B"); //Mini Battery + Sigfox + Relay + Core R2 + Mini Cover
-//BCE121r2 ("B"); //1-Wire + Cover
+//BCE121r2 ("ALL"); //1-Wire + Cover
+BCE122 ("A"); //Bridge + Tag
 //BCE201r2("B"); //Battery + CO2 + Core R2+ Cover
 //BCE202r2("A"); //Battery + CO2 + Sigfox + Core R2 + Cover
 //BCE203r2("B"); //Battery + CO2 + Core R2+ LCD (Tags ouside)
@@ -22,7 +23,7 @@ use <MCAD/triangles.scad>;
 //BCE208r2 ("A"); //Battery + Core R2 + Split + LCD & PIR (or LCD & Climate) & 2x Tag (intside)
 //BCE209r2 ("A"); //Battery + Core R2 + Compact Split + LCD & Climate
 //BCE210r2("C"); //Battery + Split Core R2 & Split + LCD & GPS (or PIR & Climate) & No Tag
-BCE211r2("C"); //Battery + Sigfox + Core R2+ LCD (Tags inside)
+//BCE211r2("C"); //Battery + Sigfox + Core R2+ LCD (Tags inside)
 //BCE301r2("B"); //Power + Core R2 + Cover
 //BCE302r2 ("ALL"); //Power + Core R2 + Encoder
 //BCE303r2 ("ALL"); //Power + Core R2 + Encoder + LCD
@@ -300,6 +301,26 @@ module BCE121r2 (value) { //1-Wire + Cover
         }
 
 }
+
+module BCE122 (value) { //Bridge + Tag
+    width= 33.1; 
+    height= 21.6;
+    holder_diff = 1.35;
+    holder_pos = 10.775;   
+
+        difference() {
+            translate([0,0,height/2+wall/2]) {
+                hollowbox(width, height, holder_diff, value); 
+                holder(width, height, holder_diff, holder_pos, value);
+                }
+            translate([0,0, 10.3+holder_h+PCB_height]) color ([0, 0, 1])
+                MiniBridge();
+                
+            translate([0, 9, 0])
+                mountingHoles1xx();
+        }
+}
+
 
 module BCE201r2 (value) { //Battery + CO2 + Core R2+ Cover
     width= 88.15; 
@@ -1152,6 +1173,13 @@ module MiniCore2R21 () {
     translate ([0,0,fatPCB_height/2])
     fatMiniPCB ();
     translate([0,-length/2-wall,0])
+        MiniUSB ();
+}
+
+module MiniBridge () {
+    translate ([0,0,PCB_height/2])
+    MiniPCB ();
+    translate([0,-length/2-wall,-0.8])
         MiniUSB ();
 }
  
