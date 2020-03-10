@@ -1,9 +1,9 @@
-<a href="https://www.bigclown.com/"><img src="https://bigclown.sirv.com/logo.png" width="200" alt="BigClown Logo" align="right"></a>
+<a href="https://www.hardwario.com/"><img src="https://www.hardwario.com/ci/assets/hw-logo.svg" width="200" alt="HARDWARIO Logo" align="right"></a>
 
 
-# BigClown Enclosures
+# HARDWARIO IoT Kit Enclosures
 
-This repository contains STL models of BigClown enclosures. These model have been optimized for 3D printing.
+This repository contains STL models of HARDWARIO IoT Kit enclosures. These model have been optimized for 3D printing.
 
 # Overview
 
@@ -52,4 +52,4 @@ This project is licensed under the [Attribution-ShareAlike 4.0 International](ht
 
 ---
 
-Made with &#x2764;&nbsp; by [BigClown Labs s.r.o.](https://www.bigclown.com) in Czech Republic.
+Made with &#x2764;&nbsp; by [HARDWARIO s.r.o.](https://www.hardwario.com) in Czech Republic.
