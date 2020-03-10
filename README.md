@@ -1,9 +1,9 @@
 <a href="https://www.hardwario.com/"><img src="https://www.hardwario.com/ci/assets/hw-logo.svg" width="200" alt="HARDWARIO Logo" align="right"></a>
 
 
-# HARDWARIO IoT Kit Enclosures
+# HARDWARIO Enclosures
 
-This repository contains STL models of HARDWARIO IoT Kit enclosures. These model have been optimized for 3D printing.
+This repository contains STL models of HARDWARIO enclosures. These model have been optimized for 3D printing.
 
 # Overview
 
