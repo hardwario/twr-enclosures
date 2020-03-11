@@ -13,9 +13,10 @@ use <MCAD/triangles.scad>;
 //BCE108r2("B"); //Mini Battery + Relay + Core R2 + Mini Cover
 //BCE109r2("B"); //Mini Battery + Sigfox + Relay + Core R2 + Mini Cover
 //BCE121r2 ("ALL"); //1-Wire + Cover
-BCE122 ("A"); //Bridge + Tag
+//BCE122 ("A"); //Bridge + Tag
 //BCE201r2("B"); //Battery + CO2 + Core R2+ Cover
-//BCE202r2("A"); //Battery + CO2 + Sigfox + Core R2 + Cover
+//BCE202r2("A"); //Battery R1.3 + CO2 + Sigfox + Core R2 + Cover
+BCE202r14("B"); //Battery R1.4 + CO2 + Sigfox + Core R2 + Cover
 //BCE203r2("B"); //Battery + CO2 + Core R2+ LCD (Tags ouside)
 //BCE204r2("C"); //Battery + CO2 + Core R2+ LCD (Tags inside)
 //BCE205r2("B"); //Battery + Core R2 + Cover
@@ -356,6 +357,27 @@ module BCE202r2 (value) { //Battery + CO2 + Sigfox + Core R2 + Cover
             translate([0,0, 50.3])
                 MiniCore2R21();
             translate([0,0, 37.8])
+                MiniSigfoxR21();
+            translate([23, -8, 0]) mountingHoles3xx(); 
+       
+        } 
+  
+}
+
+module BCE202r14 (value) { //Battery R1.4+ CO2 + Sigfox + Core R2 + Cover
+    width= 88.15; 
+    height= 63.3;
+    holder_diff = fatPCB_height+0.25;
+    holder_pos = 11.6;
+
+    difference() {
+            translate([0,0,height/2+wall/2]) {
+                hollowbox(width, height, holder_diff, value); 
+                holder(width, height, holder_diff, holder_pos, value);
+                }
+            translate([0,0, 50.3+0.5])
+                MiniCore2R21();
+            translate([0,0, 37.8+0.5])
                 MiniSigfoxR21();
             translate([23, -8, 0]) mountingHoles3xx(); 
        
