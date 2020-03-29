@@ -8,7 +8,7 @@ This repository contains Openscad and STL models of HARDWARIO IoT Kit enclosures
 # Overview
 
 The following table lists the available models:
-| Model/Preview    | STL Model                     | Module/setup                                                            | #Layers | #Mini | #Standard | #Tag | I/O Terminal         | Antenne | USB | Compatibility              |
+| Model/Preview    | STL Model                     | Module/setup                                                            | Layer Count | #Mini Module | #Standard Module | #Tag | I/O Terminal         | Antenne | USB | Compatibility              |
 | ---------------- | ----------------------------- | ----------------------------------------------------------------------- | ------- | ----- | --------- | ---- | -------------------- | ------- | --- | -------------------------- |
 | [](doc/hwe101.png) | HWE101A<br>HWE101B            | Mini Battery<br>Core<br>Mini Cover\*                                    | 3       | 3     | \-        | \-   | \-                   | \-      | Yes |                            |
 | ![](doc/hwe102.png) | HWE102A<br>HWE102B            | Mini Battery<br>LoRa / Sigfox<br>Core<br>Mini Cover\*                   | 4       | 4     | \-        | \-   | \-                   | Yes     | Yes |                            |
