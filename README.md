@@ -39,7 +39,8 @@ The following table lists the available models:
 | ![](doc/hwe502.png)      | HWE502A<br>HWE502B            | Mini Battery<br>Sensor + Flood detector<br>Core<br>LoRa / Sigfox     | 4       | 4     | \-        | \-   | \-                   | Yes     | \-  |
 
 > *Note: As top floor these Modules are available: Cover, LED, PIR, CLIMATE, GPS or Infra Grid Module
-> Models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.2 mm or better.
+
+>All STL models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.2 mm or better.
 
 
 List of available accessories:
