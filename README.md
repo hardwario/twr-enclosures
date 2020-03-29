@@ -38,7 +38,7 @@ The following table lists the available models:
 | ![](doc/hwe501.png)      | HWE501A<br>HWE501B            | Mini Battery<br>Sensor + Flood Detector<br>Core                      | 3       | 3     | \-        | \-   | \-                   | \-      | \-  |                            |
 | ![](doc/hwe502.png)      | HWE502A<br>HWE502B            | Mini Battery<br>Sensor + Flood detector<br>Core<br>LoRa / Sigfox     | 4       | 4     | \-        | \-   | \-                   | Yes     | \-  |
 
-
+> *Note: As top floor these Modules are available: Cover, LED, PIR, CLIMATE, GPS or Infra Grid Module
 > Models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.2 mm or better.
 
 
@@ -48,7 +48,7 @@ List of available accessories:
 |--------|--------------------------------------------------|------------------------------------------|
 | PIR-CV-R1 | Flat Cover for PIR Module<br>                    |                                          |
 | PIR-SC-R1 | PIR Cover Hat<br>                                |                                          |
-| LED-HD-R1 | Holder for 3mm LED or phototransistor SFH 3310   |![]![](doc/led-hd.png)                       |
+| LED-HD-R1 | Holder for 3mm LED or phototransistor SFH 3310   |![](doc/led-hd.png)                       |
 
 > Models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.15 mm.
 
