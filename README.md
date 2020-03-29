@@ -8,7 +8,7 @@ This repository contains Openscad and STL models of HARDWARIO IoT Kit enclosures
 # Overview
 
 The following table lists the available models:
-| Model/Preview    | STL Model                     | Module/setup                                                            | Layer Count | #Mini Module | #Standard Module | #Tag | I/O Terminal         | Antenne | USB | Compatibility              |
+| ____Model/Preview    | STL Model                     | Module/setup                                                            | Layer Count | #Mini Module | #Standard Module | #Tag | I/O Terminal         | Antenne | USB | Compatibility              |
 | ---------------- | ----------------------------- | ----------------------------------------------------------------------- | ------- | ----- | --------- | ---- | -------------------- | ------- | --- | -------------------------- |
 | [](doc/hwe101.png) | HWE101A<br>HWE101B            | Mini Battery<br>Core<br>Mini Cover\*                                    | 3       | 3     | \-        | \-   | \-                   | \-      | Yes |                            |
 | ![](doc/hwe102.png) | HWE102A<br>HWE102B            | Mini Battery<br>LoRa / Sigfox<br>Core<br>Mini Cover\*                   | 4       | 4     | \-        | \-   | \-                   | Yes     | Yes |                            |
@@ -50,7 +50,7 @@ List of available accessories:
 |--------|--------------------------------------------------|------------------------------------------|
 | PIR-CV-R1 | Flat Cover for PIR Module<br>                    |                                          |
 | PIR-SC-R1 | PIR Cover Hat<br>                                |                                          |
-| LED-HD-R1 | Holder for 3mm LED or phototransistor SFH 3310   |![]![]![](doc/led-hd.png)                       |
+| LED-HD-R1 | Holder for 3mm LED or phototransistor SFH 3310   |![](doc/led-hd.png)                       |
 
 > Models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.15 mm.
 
