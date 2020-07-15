@@ -25,6 +25,7 @@ The following table lists the available models:
 | ![](doc/hwe204.png)      | HWE204A<br>HWE204B<br>HWE204C | Battery<br>CO2 (+ 3xTag)<br>Core<br>LCD\*                            | 4       | 4     | 2         | 3    | \-                   | \-      | Yes |                            |
 | ![](doc/hwe205.png)      | HWE205A<br>HWE205B            | Battery (+ 1xTag)<br>Core<br>Cover                                   | 3       | 3     | 1         | 1    | \-                   | \-      | Yes |                            |
 | ![](doc/hwe206.png)      | HWE206A<br>HWE206B<br>HWE206C | Battery<br>CO2 (+ 3xTag)<br>LoRa / Sigfox<br>Core<br>LCD\*           | 5       | 5     | 3         | 3    | \-                   | Yes     | Yes |                            |
+| ![](doc/hwe207.png)      | HWE207A<br>HWE207B            | Battery<br>LoRa / Sigfox<br>Core<br>Cover\*                          | 4       | 2     | 2         | 1    | \-                   | Yes     | Yes |                            |
 | ![](doc/hwe208.png)      | HWE208A<br>HWE208B<br>HWE208C | Battery (+ 1xTag)<br>Core<br>Split<br>LCD\* & Climate\* (+ 2xTag)    | 4       | 4     | 3         | 3    | \-                   | Yes     | Yes |                            |
 | ![](doc/hwe209.png)      | HWE209A<br>HWE209B<br>HWE209C | Battery (+ 1xTag)<br>Core<br>Compact Split<br>LCD\* & Climate\*      | 4       | 4     | 3         | 1    | \-                   | Yes     | Yes |                            |
 | ![](doc/hwe210.png)      | HWE210A<br>HWE210B<br>HWE210C | Battery (+ 1xTag)<br>Core<br>Split<br>LCD\* & Climate\*              | 4       | 4     | 3         | 1    | \-                   | Yes     | Yes |                            |
@@ -50,6 +51,7 @@ List of available accessories:
 | PIR-CV-R1 | Flat Cover for PIR Module<br>                    |                                          |
 | PIR-SC-R1 | PIR Cover Hat<br>                                |                                          |
 | LED-HD-R1 | Holder for 3mm LED or phototransistor SFH 3310   |![](doc/led-hd.png)                       |
+| HWE901    | Platform for  ABB 00852 enclosure for installing Battery Module or Power Module and up to 3 other modules|![](doc/HWE901.png)                       |
 
 > Models are tested and optimized for 3D printer Prusa I3 MK2, print resolution 0.15 mm.
 
