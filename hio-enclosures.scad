@@ -28,6 +28,7 @@ HWE101("ALL"); //Mini Battery + Core + Mini Cover
 //HWE204("ALL"); //Battery R1.4 + CO2 + Core + LCD (Tags inside)
 //HWE205("ALL"); //Battery + Core + Cover
 //HWE206("ALL"); //Battery + CO2 + Sigfox + Core + LCD (Tags inside)
+//HWE207("B"); //Battery + Sigfox + Core + Cover
 //HWE208("ALL"); //Battery + Core + Split + LCD & PIR (or LCD & Climate) & 2x Tag (intside)
 //HWE209("ALL"); //Battery + Core + Compact Split + LCD & Climate
 //HWE210("ALL"); //Battery + Split Core & Split + LCD & GPS (or PIR & Climate) & No Tag
@@ -498,6 +499,26 @@ module HWE206 (value) { //Battery + CO2 + Sigfox + Core + LCD (Tags inside)
         }
 }
 
+module HWE207 (value) { //Battery + CO2 + Core + Cover
+    width= 88.15;
+    height= 50.6;
+    holder_diff = fatPCB_height+PCB_tolerance;
+    holder_pos = 11.6;
+
+    numberPrint("207",value);
+    difference() {
+            translate([0,0,height/2+wall/2]) {
+                hollowbox(width, height, holder_diff, value);
+                holder(width, height, holder_diff, holder_pos, value);
+                }
+            translate([0,0, 25.7])
+                MiniSigfox1();
+            translate([0 ,0, 38.3])
+                MiniCore21();
+            translate([23, -8, 0]) mountingHoles3xx();
+    }   
+}
+
 module HWE208 (value) { //Battery + Core + Split + LCD & PIR (or LCD & Climate) & 2x Tag (outside)
     width= 88.15;
     height= 46.8;
@@ -593,10 +614,10 @@ module HWE211 (value) { //Battery + CO2 + Core + LCD (Tags inside)
                     hollowbox(width, height, holder_diff, value);
                     holder(width, height, holder_diff, holder_pos, value);
                     }
-                translate([0,0, 25.3])
-                    MiniSigfox1();
-                translate([0 ,0, 37.8])
-                    MiniCore21();
+            translate([0,0, 25.7])
+                MiniSigfox1();
+            translate([0 ,0, 38.3])
+                MiniCore21();
                 translate([23, -8, 0]) mountingHoles3xx();
             }
         }
