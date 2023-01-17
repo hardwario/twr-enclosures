@@ -12,8 +12,8 @@ use <MCAD/triangles.scad>;
 //SELECT ENCLOSURE
 //Option: "A" = part A; "B" = part B; "C" = cover; "ALL" whole box 
 color ("Silver")
-HWE101("ALL"); //Mini Battery + Core + Mini Cover
-//HWE102("ALL"); //Mini Battery + Sigfox + Core + Mini Cover
+//HWE101("ALL"); //Mini Battery + Core + Mini Cover
+HWE102("ALL"); //Mini Battery + Sigfox + Core + Mini Cover
 //HWE103("ALL"); //Mini Battery + 1-Wire + Core + Mini Cover
 //HWE104("ALL"); //Mini Battery + Sigfox + 1-Wire + Core + Mini Cover
 //HWE105("ALL"); //Mini Battery + Sensor R1.1 + Core + Cover
